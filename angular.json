@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "hatsMall"
+    }
+  },
+  "defaultProject": "hatsMall",
+  "cli": {
+    "analytics": "db6ff5d1-5d72-4dae-9820-a108f022f99c"
+  }
 }
