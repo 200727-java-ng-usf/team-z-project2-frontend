@@ -1,0 +1,31 @@
+<!-- duped from login component -->
+
+<div id="register-container">
+    <p>Registration works!</p>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input id="username" type="text" class="form-control" formControlName="username"/>
+            <div *ngIf="submitted && formFields.username.errors">
+                <p class="alert alert-danger">Username is required!</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" class="form-control" formControlName="password"/>
+            <div *ngIf="submitted && formFields.password.errors">
+                <p class="alert alert-danger">Password is required!</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary" [disabled]="loading">Login</button>
+            <!-- we can change the loading gif to whatever -->
+            <img id="loading-img" src="https://media.tenor.com/images/d5015577b1133a47299b149b6fab1aaa/tenor.gif" *ngIf="loading"/>
+        </div>
+
+    </form>
+
+</div>

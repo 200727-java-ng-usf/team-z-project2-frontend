@@ -2,12 +2,15 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 //components
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './not-found/not-found.component'; //404 endpoint
+import { StorefrontComponent } from './storefront/storefront.component'; //front page
 
 const routes: Routes = [
-  { path: '', component: LoginComponent}, //the landing page, currently set to login
-  { path: 'login', component: LoginComponent }, //hard route to login
-
+  { path: '', component: StorefrontComponent}, //the landing page, currently set to storefront
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'storefront', component: StorefrontComponent },
   //
   { path: '**', component: NotFoundComponent } // wildcard routes should ALWAYS go last
 ];

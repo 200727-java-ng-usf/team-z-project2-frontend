@@ -13,7 +13,8 @@ export class NavComponent implements OnDestroy {
 
   currentUser: Principal;
   currentUserSub: Subscription;
-
+  //i know what a subscription is, but i'm not 100% on what's happening here
+    //i suspect that any new data on the user gets re-assigned to currentUserSub
   constructor(private authService: AuthService, private router: Router) {
     this.currentUserSub = this.authService.currentUser$.subscribe(user => {
       this.currentUser = user;
