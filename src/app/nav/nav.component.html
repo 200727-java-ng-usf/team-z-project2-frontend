@@ -1,0 +1,34 @@
+
+<!-- this is the demo nav -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand">My App!</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" 
+    data-target="#nav-links" aria-controls="nav-links" 
+    aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="nav-links">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li ngbDropdown class="nav-item dropdown">
+                <span ngbDropdownToggle class="nav-link dropdown-toggle" id="nav-dropdown">Views</span>
+                <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="nav-dropdown">
+                    
+                    <!-- this is where we can have role logic -->
+                    <!-- check the .ts file for demo defaults example -->
+                    <div>
+                        <a class="dropdown-item" *ngFor="let link of defaultLinks" [routerLink]="link.fragment">
+                            {{ link.linkName }}
+                        </a>
+                    </div>
+                
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</nav>
