@@ -1,3 +1,14 @@
+// export interface User {
+// 	user_id: number;
+//     username: string;
+//     password: string;
+// 	firstName: string; //unsure about camel case when interacting with backend
+// 	lastName: string;
+//     email: string;
+//     role: string; //may need to change back to number, depending on what is sent back
+//   }
+
+
 export class User {
 
 	user_id: number;
