@@ -1,0 +1,11 @@
+<p>users works!</p>
+
+
+<button (click)="showAllUsers()">GET all users</button>
+<div *ngIf="show">
+    <p *ngFor="let user of users">
+        <strong>User:</strong>
+        {{ user.id }}
+        {{ user.username }}
+    </p>
+</div>

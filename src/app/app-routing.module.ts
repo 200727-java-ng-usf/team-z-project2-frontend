@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 //components
 import { LoginComponent } from './login/login.component';
+import { UsersComponent } from './users/users.component';
 import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './not-found/not-found.component'; //404 endpoint
 import { StorefrontComponent } from './storefront/storefront.component'; //front page
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'storefront', component: StorefrontComponent },
+  { path: 'users', component: UsersComponent }, //may need to be renamed if the url conflicts with http methods
   //
   { path: '**', component: NotFoundComponent } // wildcard routes should ALWAYS go last
 ];

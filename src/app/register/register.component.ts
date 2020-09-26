@@ -1,6 +1,4 @@
 
-// !! currently just a copy of login
-
 //import related stuff
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
