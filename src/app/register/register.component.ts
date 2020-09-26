@@ -3,7 +3,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from '../models/user';
 import { AuthService } from '../services/auth.service'; //either add register logic to auth or put it in user
+import { UserService } from '../services/user.service';
 
 //self identification, loaders
 @Component({
@@ -18,7 +20,7 @@ export class RegisterComponent implements OnInit {
   loading = false;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {
     console.log('RegisterComponent instantiating...');
     console.log('RegisterComponent instantiation complete.');
   }
@@ -29,7 +31,10 @@ export class RegisterComponent implements OnInit {
     //include role if added to the form
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      email: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required]
     });
     console.log('RegisterComponent form value initialization complete.');
   }
@@ -43,8 +48,16 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.invalid) return;
     this.loading = true;
 
+    let newUser = new User;
+    newUser.$username = this.formFields.username.value;
+    newUser.$password = this.formFields.password.value;
+    newUser.$email = this.formFields.email.value;
+    newUser.$firstName = this.formFields.firstName.value;
+    newUser.$lastName = this.formFields.lastName.value;
+    console.log("New user: "+ newUser);
+
     //will add a diff authService method for registration, gotta see what the servlets take in for registration
-    this.authService.authenticate(this.formFields.username.value, this.formFields.password.value)
+    this.userService.registerNewUser(newUser)
                     .subscribe(
                       // user successfully logged in, execute the function below
                       () => {
@@ -55,7 +68,7 @@ export class RegisterComponent implements OnInit {
                           //admins should point to admin dashboard
                           //users should unlock... something idk yet
 
-                        this.router.navigate(['/dashboard']); //point this wherever
+                        this.router.navigate(['']); //point this wherever
                         
                       },
                       // if an error occurs, execute the function below

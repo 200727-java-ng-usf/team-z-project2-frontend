@@ -21,6 +21,31 @@
         </div>
 
         <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="text" class="form-control" formControlName="email"/>
+            <div *ngIf="submitted && formFields.email.errors">
+                <p class="alert alert-danger">Email is required!</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input id="firstName" type="text" class="form-control" formControlName="firstName"/>
+            <div *ngIf="submitted && formFields.firstName.errors">
+                <p class="alert alert-danger">First Name is required!</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input id="lastName" type="text" class="form-control" formControlName="lastName"/>
+            <div *ngIf="submitted && formFields.lastName.errors">
+                <p class="alert alert-danger">Last Name is required!</p>
+            </div>
+        </div>
+
+
+        <div class="form-group">
             <button class="btn btn-primary" [disabled]="loading">Login</button>
             <!-- we can change the loading gif to whatever -->
             <img id="loading-img" src="https://media.tenor.com/images/d5015577b1133a47299b149b6fab1aaa/tenor.gif" *ngIf="loading"/>

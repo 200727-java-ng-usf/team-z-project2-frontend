@@ -41,9 +41,22 @@ export class UserService {
   getTargetUser(id){ //untested
     console.log("Fetching from backend...")
     let url = `${env.API_URL}/users/id/` + id;
+    console.log("URL: "+ url);
     return this.http.get(url,{responseType:'json',observe:"response"});
   }
 
+  registerNewUser(user:User){ //untested
+    console.log('Registering new user... ');
+    console.log(`Sending ${user}, to ${env.API_URL}/users`);
+    //here are the REST targets
+    return this.http.post(`${env.API_URL}/users`, user, {
+      headers: {
+        'Content-type': 'application/json'
+      },
+      observe: 'response' 
+    })
+    
+  }
 
 }
 
