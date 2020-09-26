@@ -36,11 +36,18 @@ export class UserService {
     console.log("Fetching from backend...")
     //this might need to be responseType:Application/JSON //EDIT: set it to json
     return this.http.get(`${env.API_URL}/users`,{responseType:'json',observe:"response"});
-  
+  }
+
+  getTargetUser(id){ //untested
+    console.log("Fetching from backend...")
+    let url = `${env.API_URL}/users/id/` + id;
+    return this.http.get(url,{responseType:'json',observe:"response"});
   }
 
 
-  // httpOptions = {
+}
+
+// httpOptions = {
   //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   // };
   // getAllUsers(): Observable<User[]> {
@@ -80,8 +87,6 @@ export class UserService {
 
   // }
 
-  
-
     //doesn't work:
     // let usersJSON;
     // this.http.get(`${env.API_URL}/users`)
@@ -95,5 +100,3 @@ export class UserService {
   //     },
   //     observe: 'response'
   // });
-}
-

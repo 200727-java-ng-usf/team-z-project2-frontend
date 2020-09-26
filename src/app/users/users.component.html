@@ -9,3 +9,32 @@
         {{ user.username }}
     </p>
 </div>
+
+<!-- <div>
+    <label for="id">ID</label>
+    <input id="id" type="text" class="form-control" formControlName="id"/>
+    <button (click)="showUser()">GET specific user</button>
+    <div *ngIf="show">
+
+    </div>
+</div> -->
+
+<div id="search-container">
+    <form [formGroup]="userFindForm" (ngSubmit)="showUser()">
+        
+
+        <div class="form-group">
+            <label for="id">Password</label>
+            <input id="id" class="form-control" formControlName="id"/>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary" [disabled]="loading">Get user by id</button>
+        </div>
+    </form>
+    <p>
+        <strong>User:</strong>
+        {{ targetUser.id }}
+        {{ targetUser.username }}
+    </p>
+</div>

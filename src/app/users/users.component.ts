@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-users',
@@ -10,14 +11,20 @@ import { User } from '../models/user';
 export class UsersComponent implements OnInit {
   users = new Array;
   show = false; //for the display div
+  searchForm: FormGroup;
   
-  
-  constructor(private userService:UserService) {
+  constructor(private userService:UserService, private formBuilder: FormBuilder) {
 
   }
 
-  ngOnInit(): void {}
-
+  ngOnInit(): void {
+    this.searchForm = this.formBuilder.group({
+      id: ['', Validators.required]
+    });
+  }
+  get formFields() {
+    return this.searchForm.controls;
+  }  
   
   showAllUsers(): void{
     //apparently we don't need to parse it.
@@ -68,6 +75,33 @@ export class UsersComponent implements OnInit {
     // return userArray;
   }
 
+  showUser(){
+    let id = this.formFields.id.value;
+    this.userService.getTargetUser(id).subscribe( //get the stuff
+      resp=>{ //take the response (should be a json)
+          console.log("resp.body: "+resp.body);
+          let respJSON = resp.body;
+          console.log("json: "+respJSON);
+          console.log('0.id: '+ respJSON[0].id); //THIS ONE RIGHT HERE. THIS WORKS
+          console.log('Response:'+resp.status);
+          if(resp.status == 200){ //FIX THIS depending on returned code
+            let targetUser = new User();
+            targetUser.$user_id = respJSON[0].id; //FIX THIS depending on what backend sends back
+            targetUser.$firstName = respJSON[0].firstname;
+            targetUser.$lastName = respJSON[0].lastname;
+            targetUser.$email = respJSON[0].email;
+            targetUser.$username = respJSON[0].username;
+            targetUser.$password = respJSON[0].password;
+            console.log('Added user with id of: '+ respJSON[0]["id"]);
+          }
+      },
+      err=>{
+          console.log(err.status);
+      }
+  );
+    this.revealUsers();
+  }
+
   revealUsers(){ //show toggler
     if(this.show==false){
       this.show=true;
@@ -77,6 +111,22 @@ export class UsersComponent implements OnInit {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
 //can't get this to work
   // getUsers(): void {
   //   this.userService.getAllUsers()
