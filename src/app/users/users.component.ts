@@ -12,7 +12,7 @@ export class UsersComponent implements OnInit {
   users = new Array;
   show = false; //for the display div
   userFindForm: FormGroup;
-  targetUser = '';
+  targetUser = new User;
   
   constructor(private userService:UserService, private formBuilder: FormBuilder) {
 

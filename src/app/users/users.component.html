@@ -5,20 +5,12 @@
 <div *ngIf="show">
     <p *ngFor="let user of users">
         <strong>User:</strong>
-        {{ user.id }}
+        {{ user.user_id }}
         {{ user.username }}
     </p>
 </div>
 
-<!-- <div>
-    <label for="id">ID</label>
-    <input id="id" type="text" class="form-control" formControlName="id"/>
-    <button (click)="showUser()">GET specific user</button>
-    <div *ngIf="show">
-
-    </div>
-</div> -->
-
+<!-- method not yet tested -->
 <div id="search-container">
     <form [formGroup]="userFindForm" (ngSubmit)="showUser()">
         
@@ -34,7 +26,7 @@
     </form>
     <p>
         <strong>User:</strong>
-        {{ targetUser.id }}
+        {{ targetUser.user_id }}
         {{ targetUser.username }}
     </p>
 </div>
