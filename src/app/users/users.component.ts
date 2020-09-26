@@ -11,19 +11,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class UsersComponent implements OnInit {
   users = new Array;
   show = false; //for the display div
-  searchForm: FormGroup;
+  userFindForm: FormGroup;
+  targetUser;
   
   constructor(private userService:UserService, private formBuilder: FormBuilder) {
 
   }
 
   ngOnInit(): void {
-    this.searchForm = this.formBuilder.group({
+    this.userFindForm = this.formBuilder.group({
       id: ['', Validators.required]
     });
   }
   get formFields() {
-    return this.searchForm.controls;
+    return this.userFindForm.controls;
   }  
   
   showAllUsers(): void{
