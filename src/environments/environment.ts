@@ -1,7 +1,7 @@
 
 export const environment = {
   production: false,
-  API_URL: 'http://teamzproject2-env.eba-34mm3jvd.us-east-2.elasticbeanstalk.com/'
+  API_URL: 'http://teamzproject2-env.eba-34mm3jvd.us-east-2.elasticbeanstalk.com'
   //set to your own tomcat or aws beanstalk
   //should coincide with servlets
 

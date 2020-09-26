@@ -35,17 +35,18 @@ export class UserService {
   getAllUsers(){
     console.log("Fetching from backend...")
     //this might need to be responseType:Application/JSON //EDIT: set it to json
+    console.log("URL: "+`${env.API_URL}/users`);
     return this.http.get(`${env.API_URL}/users`,{responseType:'json',observe:"response"});
   }
 
-  getTargetUser(id){ //untested
+  getTargetUser(id){ //test: working
     console.log("Fetching from backend...")
     let url = `${env.API_URL}/users/id/` + id;
     console.log("URL: "+ url);
     return this.http.get(url,{responseType:'json',observe:"response"});
   }
 
-  registerNewUser(user:User){ //untested
+  registerNewUser(user:User){ //test: working
     console.log('Registering new user... ');
     console.log(`Sending ${user}, to ${env.API_URL}/users`);
     //here are the REST targets
@@ -57,6 +58,21 @@ export class UserService {
     })
     
   }
+
+  deleteTargetUser(id){ //untested
+    console.log("Deleting...")
+    let url = `${env.API_URL}/users/id/` + id;
+    console.log("URL: "+ url);
+    return this.http.delete(url,{responseType:'json',observe:"response"});
+  }
+
+  updateTargetUser(user:User){ //untested
+    console.log("Updating...")
+    let url = `${env.API_URL}/users`;
+    console.log("URL: "+ url);
+    return this.http.put(url,user,{responseType:'json',observe:"response"});
+  }
+
 
 }
 

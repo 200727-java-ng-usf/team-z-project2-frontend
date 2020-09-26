@@ -13,12 +13,14 @@ export class UsersComponent implements OnInit {
   show = false; //for the display div
   userFindForm: FormGroup;
   targetUser = new User;
+  tgtUser = new Array;
   
   constructor(private userService:UserService, private formBuilder: FormBuilder) {
 
   }
 
   ngOnInit(): void {
+    
     this.userFindForm = this.formBuilder.group({
       id: ['', Validators.required]
     });
@@ -59,7 +61,7 @@ export class UsersComponent implements OnInit {
               newUser.$email = respJSON[i].email;
               newUser.$username = respJSON[i].username;
               newUser.$password = respJSON[i].password;
-              // newUser.$role = user["role"];
+              newUser.$role = respJSON[i].role;
               this.users.unshift(newUser); //adding user to array
               console.log('Added user with id of: '+ respJSON[i]["id"]);
             }
@@ -80,20 +82,20 @@ export class UsersComponent implements OnInit {
     let id = this.formFields.id.value;
     this.userService.getTargetUser(id).subscribe( //get the stuff
       resp=>{ //take the response (should be a json)
-          console.log("resp.body: "+resp.body);
-          let respJSON = resp.body;
-          console.log("json: "+respJSON);
-          console.log('0.id: '+ respJSON[0].id); //THIS ONE RIGHT HERE. THIS WORKS
+          
+          this.tgtUser.unshift(resp.body);
+          
+          console.log('0.id: '+ this.tgtUser[0].id); //man this is so gross
           console.log('Response:'+resp.status);
-          if(resp.status == 200){ //FIX THIS depending on returned code
+          if(resp.status == 200){ 
             let targetUser = new User();
-            targetUser.$user_id = respJSON[0].id; //FIX THIS depending on what backend sends back
-            targetUser.$firstName = respJSON[0].firstname;
-            targetUser.$lastName = respJSON[0].lastname;
-            targetUser.$email = respJSON[0].email;
-            targetUser.$username = respJSON[0].username;
-            targetUser.$password = respJSON[0].password;
-            console.log('Added user with id of: '+ respJSON[0]["id"]);
+            targetUser.$user_id = this.tgtUser[0].id; //FIX THIS depending on what backend sends back
+            targetUser.$firstName = this.tgtUser[0].firstname;
+            targetUser.$lastName = this.tgtUser[0].lastname;
+            targetUser.$email = this.tgtUser[0].email;
+            targetUser.$username = this.tgtUser[0].username;
+            targetUser.$password = this.tgtUser[0].password;
+            console.log('Added user with id of: '+ this.tgtUser[0]["id"]);
           }
       },
       err=>{

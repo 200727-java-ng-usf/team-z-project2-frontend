@@ -10,6 +10,11 @@ import { environment as env } from '../../environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
+  //ROLES:
+    //USER
+    //MANAGER
+    //ADMIN
+    //INACTIVE
 
   private currentUserSubject: BehaviorSubject<Principal>
   currentUser$: Observable<Principal>
@@ -42,6 +47,8 @@ export class AuthService {
       map(resp => {
         let principal = resp.body as Principal; // another form of casting (using the 'as' keyword)
         this.currentUserSubject.next(principal);
+        console.log('Principle: '+principal);
+        console.log('Current user: '+ this.currentUserSubject);
       })
     );
 
@@ -54,6 +61,14 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return !!this.currentUserValue;
+  }
+  
+  isAdmin(): boolean{
+    if(this.currentUserValue.role=='ADMIN'){
+      return true;
+    } else {
+      return false;
+    }
   }
   
 }
