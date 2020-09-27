@@ -13,6 +13,7 @@ export class UsersComponent implements OnInit {
   show = false; //for the display div
   userFindForm: FormGroup;
   userUpdateForm: FormGroup;
+  userDeleteForm: FormGroup;
   targetUser = new User;
   tgtUser = new Array;
   
@@ -25,15 +26,17 @@ export class UsersComponent implements OnInit {
     this.userFindForm = this.formBuilder.group({
       id: ['', Validators.required]
     });
-
+    this.userDeleteForm = this.formBuilder.group({
+      idDelete: ['', Validators.required]
+    });
     this.userUpdateForm = this.formBuilder.group({
-      id: ['', Validators.required],
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', Validators.required],
-      role: ['', Validators.required]
+      idUpdate: ['', Validators.required],
+      usernameUpdate: ['', Validators.required],
+      passwordUpdate: ['', Validators.required],
+      firstNameUpdate: ['', Validators.required],
+      lastNameUpdate: ['', Validators.required],
+      emailUpdate: ['', Validators.required],
+      roleUpdate: ['', Validators.required]
     });
 
   }
@@ -43,14 +46,18 @@ export class UsersComponent implements OnInit {
   get updateFields() {
     return this.userUpdateForm.controls;
   }  
+  get deleteFields() {
+    return this.userDeleteForm.controls;
+  }  
 
   updateUser(){
     let updatedUser = new User;
-    updatedUser.$username = this.formFields.username.value;
-    updatedUser.$password = this.formFields.password.value;
-    updatedUser.$email = this.formFields.email.value;
-    updatedUser.$firstName = this.formFields.firstName.value;
-    updatedUser.$lastName = this.formFields.lastName.value;
+    updatedUser.$username = this.updateFields.usernameUpdate.value;
+    updatedUser.$password = this.updateFields.passwordUpdate.value;
+    updatedUser.$email = this.updateFields.emailUpdate.value;
+    updatedUser.$firstName = this.updateFields.firstNameUpdate.value;
+    updatedUser.$lastName = this.updateFields.lastNameUpdate.value;
+    updatedUser.$role = this.updateFields.roleUpdate.value;
     console.log("Updated user: "+ updatedUser);
     this.userService.updateTargetUser(updatedUser)
     .subscribe(
@@ -64,8 +71,19 @@ export class UsersComponent implements OnInit {
       () => {
       }
     );
-}
+  }
 
+  deleteUser(){
+    let id = this.deleteFields.idDelete.value;
+    this.userService.deleteTargetUser(id).subscribe(
+      resp=>{ 
+          console.log('Response: '+resp.status);
+      },
+      err=>{
+          console.log(err.status);
+      }
+    );
+  }
   
   showAllUsers(): void{
     //apparently we don't need to parse it.
