@@ -52,6 +52,7 @@ export class UsersComponent implements OnInit {
 
   updateUser(){
     let updatedUser = new User;
+    updatedUser.$user_id = this.updateFields.idUpdate.value;
     updatedUser.$username = this.updateFields.usernameUpdate.value;
     updatedUser.$password = this.updateFields.passwordUpdate.value;
     updatedUser.$email = this.updateFields.emailUpdate.value;

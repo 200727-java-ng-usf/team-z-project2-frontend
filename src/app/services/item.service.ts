@@ -30,7 +30,7 @@ export class ItemService {
     return this.http.get(url,{responseType:'json',observe:"response"});
   }
 
-  registerNewItem(item:Item){ //test: working
+  createItem(item:Item){ //test: working
     console.log('Registering new item... ');
     console.log(`Sending ${item}, to ${env.API_URL}/items`);
     //here are the REST targets

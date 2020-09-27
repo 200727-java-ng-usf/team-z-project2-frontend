@@ -13,6 +13,9 @@ export class ItemsComponent implements OnInit {
   items = new Array;
   show = false; //for the display div
   itemFindForm: FormGroup;
+  itemDeleteForm: FormGroup;
+  itemUpdateForm: FormGroup;
+  itemCreateForm: FormGroup;
   targetItem = new Item;
   tgtItem = new Array;
   
@@ -25,11 +28,97 @@ export class ItemsComponent implements OnInit {
     this.itemFindForm = this.formBuilder.group({
       id: ['', Validators.required]
     });
+    this.itemDeleteForm = this.formBuilder.group({
+      idDelete: ['', Validators.required]
+    });
+    this.itemUpdateForm = this.formBuilder.group({
+      idUpdate: ['', Validators.required],
+      nameUpdate: ['', Validators.required],
+      priceUpdate: ['', Validators.required],
+      stockUpdate: ['', Validators.required],
+      descriptionUpdate: ['', Validators.required],
+      urlUpdate: ['', Validators.required],
+      genreUpdate: ['', Validators.required]
+    });
+    this.itemCreateForm = this.formBuilder.group({
+      idCreate: ['', Validators.required],
+      nameCreate: ['', Validators.required],
+      priceCreate: ['', Validators.required],
+      stockCreate: ['', Validators.required],
+      descriptionCreate: ['', Validators.required],
+      urlCreate: ['', Validators.required],
+      genreCreate: ['', Validators.required]
+    });
   }
-  get formFields() {
+  get formFields() { //for find by ID
     return this.itemFindForm.controls;
   }  
-  
+  get updateFields() {
+    return this.itemUpdateForm.controls;
+  }  
+  get deleteFields() {
+    return this.itemDeleteForm.controls;
+  }  
+  get createFields() {
+    return this.itemCreateForm.controls;
+  }  
+  updateItem(){
+    let updatedItem = new Item;
+    updatedItem.$item_id = this.updateFields.idUpdate.value;
+    updatedItem.$name = this.updateFields.nameUpdate.value;
+    updatedItem.$price = this.updateFields.priceUpdate.value;
+    updatedItem.$stock = this.updateFields.stockUpdate.value;
+    updatedItem.$description = this.updateFields.descriptionUpdate.value;
+    updatedItem.$itemImageUrl = this.updateFields.urlUpdate.value;
+    updatedItem.$genre_id = this.updateFields.genreUpdate.value;
+    console.log("Updated item: "+ updatedItem);
+    this.itemService.updateTargetItem(updatedItem)
+    .subscribe(
+      () => {
+        console.log('Update successful!');
+      },
+      // if an error occurs, execute the function below
+      err => {
+        console.log(err);
+      },
+      () => {
+      }
+    );
+  }
+  createItem(){
+    let createdItem = new Item;
+    createdItem.$name = this.createFields.nameCreate.value;
+    createdItem.$price = this.createFields.priceCreate.value;
+    createdItem.$stock = this.createFields.stockCreate.value;
+    createdItem.$description = this.createFields.descriptionCreate.value;
+    createdItem.$itemImageUrl = this.createFields.urlCreate.value;
+    createdItem.$genre_id = this.createFields.genreCreate.value;
+    console.log("Create item: "+ createdItem);
+    this.itemService.createItem(createdItem)
+    .subscribe(
+      () => {
+        console.log('Creation successful!');
+      },
+      // if an error occurs, execute the function below
+      err => {
+        console.log(err);
+      },
+      () => {
+      }
+    );
+  }
+  deleteItem(){
+    let id = this.deleteFields.idDelete.value;
+    this.itemService.deleteTargetItem(id).subscribe(
+      resp=>{ 
+          console.log('Response: '+resp.status);
+      },
+      err=>{
+          console.log(err.status);
+      }
+    );
+  }
+
   showAllItems(): void{
     //apparently we don't need to parse it.
       //if we try to parse it (again), we will have committed a cardinal sin
