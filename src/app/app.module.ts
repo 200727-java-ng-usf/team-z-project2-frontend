@@ -23,6 +23,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { StorefrontComponent } from './storefront/storefront.component';
 import { RegisterComponent } from './register/register.component';
 import { UsersComponent } from './users/users.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { UsersComponent } from './users/users.component';
     NotFoundComponent,
     StorefrontComponent,
     RegisterComponent,
-    UsersComponent
+    UsersComponent,
+    UserDashboardComponent
   ],
   imports: [
     BrowserModule,

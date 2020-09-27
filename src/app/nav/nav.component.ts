@@ -11,46 +11,30 @@ import { AuthService } from '../services/auth.service';
 })
 export class NavComponent implements OnDestroy {
 
-  currentUser: Principal;
-  currentUserSub: Subscription;
-  //i know what a subscription is, but i'm not 100% on what's happening here
-    //i suspect that any new data on the user gets re-assigned to currentUserSub
+  currentUser: Principal = null;
+  currentUserSub: Subscription = null;
+  loggedin: boolean = false;
+  isUser: boolean = false;
+ 
   constructor(private authService: AuthService, private router: Router) {
     this.currentUserSub = this.authService.currentUser$.subscribe(user => {
       this.currentUser = user;
+      
+      if(user){
+        console.log("Current user role: "+ this.currentUser.role);
+        this.loggedin=true;
+        console.log("Logged in: "+this.loggedin);
+
+        if(this.currentUser.role=="User"){
+          this.isUser=true;
+          console.log("Is User: "+this.isUser);
+        } 
+      } 
+
     });
   }
 
   
-  // authenticatedUserLinks = [
-  //   {
-  //     linkName: 'Structural Directives Demo',
-  //     fragment: '/structural'
-  //   }, 
-  //   {
-  //     linkName: 'Attribute Directives Demo',
-  //     fragment: '/attribute'
-  //   }, 
-  //   {
-  //     linkName: 'Pipes Demo',
-  //     fragment: '/pipes'
-  //   }, 
-  //   {
-  //     linkName: 'Quiz (HttpClient Demo)',
-  //     fragment: '/quiz'
-  //   },
-  //   {
-  //     linkName: 'Dashboard',
-  //     fragment: '/dashboard'
-  //   }
-  // ]
-
-  // unauthenticatedUserLinks = [
-  //   {
-  //     linkName: 'Login',
-  //     fragment: '/login'
-  //   }
-  // ];
 
   //new; may change later
   defaultLinks = [
@@ -76,6 +60,22 @@ export class NavComponent implements OnDestroy {
     }
   ];
 
+  userRoleLinks = [
+    {
+      linkName: 'Home', //back to storefront
+      fragment: ''
+    },
+    {
+      linkName: 'User Info', //for testing atm
+      fragment: '/userinfo'
+    },
+    {
+      linkName: 'Cart',
+      fragment: '/cart' //shopping cart, until something better comes up
+    }
+  ];
+
+
   ngOnDestroy() {
     // remember to unsubscribe from observables to prevent memory leaks
     this.currentUserSub.unsubscribe(); //only cowards fear memory leaks
@@ -87,19 +87,3 @@ export class NavComponent implements OnDestroy {
   }
 
 }
-
-//default demo html:
-// <!-- this is where we can have role logic -->
-// <!-- authenticated users -->
-// <div *ngIf="currentUser">
-//     <a class="dropdown-item" *ngFor="let link of authenticatedUserLinks" [routerLink]="link.fragment">
-//         {{ link.linkName }}
-//     </a>
-//     <a class="dropdown-item" (click)="logout()">Logout</a> 
-// </div>
-// <!-- non-authenticated -->
-// <div *ngIf="!currentUser">
-//     <a class="dropdown-item" *ngFor="let link of unauthenticatedUserLinks" [routerLink]="link.fragment">
-//         {{ link.linkName }}
-//     </a>
-// </div>

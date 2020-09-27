@@ -20,12 +20,19 @@
                     
                     <!-- this is where we can have role logic -->
                     <!-- check the .ts file for demo defaults example -->
-                    <div>
+                    <div *ngIf="!loggedin">
                         <a class="dropdown-item" *ngFor="let link of defaultLinks" [routerLink]="link.fragment">
                             {{ link.linkName }}
                         </a>
                     </div>
                 
+                    <div *ngIf="isUser">
+                        <a class="dropdown-item" *ngFor="let link of userRoleLinks" [routerLink]="link.fragment">
+                            {{ link.linkName }}
+                        </a>
+                        <a class="dropdown-item" (click)="logout()">Logout</a> 
+                    </div>
+
                 </div>
             </li>
         </ul>
