@@ -19,12 +19,15 @@ export class NavComponent implements OnDestroy {
   constructor(private authService: AuthService, private router: Router) {
     this.currentUserSub = this.authService.currentUser$.subscribe(user => {
       this.currentUser = user;
-      
+      //this is all within the subscription, so should be updated anytime user info is updated
       if(user){
         console.log("Current user role: "+ this.currentUser.role);
         this.loggedin=true;
         console.log("Logged in: "+this.loggedin);
-
+        
+        //include logic for navbar links within this parent if statement
+          //otherwise typescript will cry, cry, cry about null pointers like a baby
+            //thank you typescript
         if(this.currentUser.role=="User"){
           this.isUser=true;
           console.log("Is User: "+this.isUser);
