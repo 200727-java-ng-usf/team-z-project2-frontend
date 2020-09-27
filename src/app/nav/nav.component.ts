@@ -58,6 +58,14 @@ export class NavComponent implements OnDestroy {
       fragment: '/items'
     },
     {
+      linkName: 'Orders', // for testing atm
+      fragment: '/orders'
+    },
+    {
+      linkName: 'OrderedItems', // for testing atm
+      fragment: '/ordereditems'
+    },
+    {
       linkName: 'Test 404',
       fragment: '/404' //because this is not an actual link, it should still resolve to 404 page
     }
