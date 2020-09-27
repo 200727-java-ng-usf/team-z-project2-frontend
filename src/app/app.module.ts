@@ -24,6 +24,10 @@ import { StorefrontComponent } from './storefront/storefront.component';
 import { RegisterComponent } from './register/register.component';
 import { UsersComponent } from './users/users.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { ItemsComponent } from './items/items.component';
+// import { ItemsDashboardComponent } from './items-dashboard/items-dashboard.component'; // made this at first but don't need it I think
+import { OrdersComponent } from './orders/orders.component';
+import { OrderedItemsComponent } from './ordered-items/ordered-items.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,11 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
     StorefrontComponent,
     RegisterComponent,
     UsersComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+    ItemsComponent,
+    // ItemsDashboardComponent,
+    OrdersComponent,
+    OrderedItemsComponent
   ],
   imports: [
     BrowserModule,
