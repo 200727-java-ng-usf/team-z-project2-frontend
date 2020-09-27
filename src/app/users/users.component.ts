@@ -12,6 +12,7 @@ export class UsersComponent implements OnInit {
   users = new Array;
   show = false; //for the display div
   userFindForm: FormGroup;
+  userUpdateForm: FormGroup;
   targetUser = new User;
   tgtUser = new Array;
   
@@ -24,10 +25,47 @@ export class UsersComponent implements OnInit {
     this.userFindForm = this.formBuilder.group({
       id: ['', Validators.required]
     });
+
+    this.userUpdateForm = this.formBuilder.group({
+      id: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+      role: ['', Validators.required]
+    });
+
   }
   get formFields() {
     return this.userFindForm.controls;
   }  
+  get updateFields() {
+    return this.userUpdateForm.controls;
+  }  
+
+  updateUser(){
+    let updatedUser = new User;
+    updatedUser.$username = this.formFields.username.value;
+    updatedUser.$password = this.formFields.password.value;
+    updatedUser.$email = this.formFields.email.value;
+    updatedUser.$firstName = this.formFields.firstName.value;
+    updatedUser.$lastName = this.formFields.lastName.value;
+    console.log("Updated user: "+ updatedUser);
+    this.userService.updateTargetUser(updatedUser)
+    .subscribe(
+      () => {
+        console.log('Update successful!');
+      },
+      // if an error occurs, execute the function below
+      err => {
+        console.log(err);
+      },
+      () => {
+      }
+    );
+}
+
   
   showAllUsers(): void{
     //apparently we don't need to parse it.

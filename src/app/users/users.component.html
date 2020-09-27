@@ -17,7 +17,7 @@
         
 
         <div class="form-group">
-            <label for="id">Password</label>
+            <label for="id">ID</label>
             <input id="id" class="form-control" formControlName="id"/>
         </div>
 
@@ -31,3 +31,44 @@
         {{ tgtUser[0].username }}
     </p>
 </div>
+<form [formGroup]="registerForm" (ngSubmit)="update()">
+    <div id="update-container">
+        <div class="form-group">
+            <label for="idUpdate">ID</label>
+            <input id="idUpdate" type="text" class="form-control" formControlName="idUpdate"/>
+        </div>
+
+        <div class="form-group">
+            <label for="usernameUpdate">Username</label>
+            <input id="usernameUpdate" type="text" class="form-control" formControlName="usernameUpdate"/>
+        </div>
+
+        <div class="form-group">
+            <label for="passwordUpdate">Password</label>
+            <input id="passwordUpdate" type="password" class="form-control" formControlName="passwordUpdate"/>
+        </div>
+
+        <div class="form-group">
+            <label for="emailUpdate">Email</label>
+            <input id="emailUpdate" type="text" class="form-control" formControlName="emailUpdate"/>
+        </div>
+
+        <div class="form-group">
+            <label for="firstNameUpdate">First Name</label>
+            <input id="firstNameUpdate" type="text" class="form-control" formControlName="firstNameUpdate"/>
+        </div>
+
+        <div class="form-group">
+            <label for="lastNameUpdate">Last Name</label>
+            <input id="lastNameUpdate" type="text" class="form-control" formControlName="lastNameUpdate"/>
+        </div>
+        <div class="form-group">
+            <label for="roleUpdate">Role</label>
+            <input id="roleUpdate" type="text" class="form-control" formControlName="roleUpdate"/>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Update</button>
+        </div>
+    </div>
+</form>
