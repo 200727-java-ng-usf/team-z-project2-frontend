@@ -12,6 +12,8 @@ export class UsersComponent implements OnInit {
   users = new Array;
   show = false; //for the display div
   userFindForm: FormGroup;
+  userUpdateForm: FormGroup;
+  userDeleteForm: FormGroup;
   targetUser = new User;
   tgtUser = new Array;
   
@@ -24,10 +26,65 @@ export class UsersComponent implements OnInit {
     this.userFindForm = this.formBuilder.group({
       id: ['', Validators.required]
     });
+    this.userDeleteForm = this.formBuilder.group({
+      idDelete: ['', Validators.required]
+    });
+    this.userUpdateForm = this.formBuilder.group({
+      idUpdate: ['', Validators.required],
+      usernameUpdate: ['', Validators.required],
+      passwordUpdate: ['', Validators.required],
+      firstNameUpdate: ['', Validators.required],
+      lastNameUpdate: ['', Validators.required],
+      emailUpdate: ['', Validators.required],
+      roleUpdate: ['', Validators.required]
+    });
+
   }
   get formFields() {
     return this.userFindForm.controls;
   }  
+  get updateFields() {
+    return this.userUpdateForm.controls;
+  }  
+  get deleteFields() {
+    return this.userDeleteForm.controls;
+  }  
+
+  updateUser(){
+    let updatedUser = new User;
+    updatedUser.$user_id = this.updateFields.idUpdate.value;
+    updatedUser.$username = this.updateFields.usernameUpdate.value;
+    updatedUser.$password = this.updateFields.passwordUpdate.value;
+    updatedUser.$email = this.updateFields.emailUpdate.value;
+    updatedUser.$firstName = this.updateFields.firstNameUpdate.value;
+    updatedUser.$lastName = this.updateFields.lastNameUpdate.value;
+    updatedUser.$role = this.updateFields.roleUpdate.value;
+    console.log("Updated user: "+ updatedUser);
+    this.userService.updateTargetUser(updatedUser)
+    .subscribe(
+      () => {
+        console.log('Update successful!');
+      },
+      // if an error occurs, execute the function below
+      err => {
+        console.log(err);
+      },
+      () => {
+      }
+    );
+  }
+
+  deleteUser(){
+    let id = this.deleteFields.idDelete.value;
+    this.userService.deleteTargetUser(id).subscribe(
+      resp=>{ 
+          console.log('Response: '+resp.status);
+      },
+      err=>{
+          console.log(err.status);
+      }
+    );
+  }
   
   showAllUsers(): void{
     //apparently we don't need to parse it.

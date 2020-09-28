@@ -1,0 +1,32 @@
+<p>orders works!</p>
+
+<button (click)="showAllOrders()">GET all orders</button>
+<div *ngIf="show">
+    <p *ngFor="let order of Orders">
+        <strong>Order:</strong>
+        {{ order.id }}
+        {{ order.itemCount }}
+        {{ order.price }}
+    </p>
+</div>
+
+<!-- method not yet tested -->
+<div id="search-container">
+    <form [formGroup]="orderFindForm" (ngSubmit)="showOrder()">
+        
+
+        <div class="form-group">
+            <label for="id">Password</label>
+            <input id="id" class="form-control" formControlName="id"/>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Get order by id</button>
+        </div>
+    </form>
+    <p *ngIf="show">
+        <strong>Order:</strong>
+        {{ tgtOrder[0].id }}
+        {{ tgtOrder[0].itemCount }}
+    </p>
+</div>
