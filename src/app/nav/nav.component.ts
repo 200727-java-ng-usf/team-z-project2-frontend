@@ -60,12 +60,12 @@ export class NavComponent implements OnDestroy {
       fragment: '/register'
     },
     {
-      linkName: 'Users', //for testing atm
-      fragment: '/users'
+      linkName: 'Admin', //for testing atm
+      fragment: '/admindashboard'
     },
     {
-      linkName: 'Items', //for testing atm
-      fragment: '/items'
+      linkName: 'Manager', //for testing atm
+      fragment: '/managerdashboard'
     },
     {
       linkName: 'Orders', // for testing atm

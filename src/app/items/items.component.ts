@@ -53,7 +53,11 @@ export class ItemsComponent implements OnInit {
       urlCreate: ['', Validators.required],
       genreCreate: ['', Validators.required]
     });
+
+    //populate table on init
+    this.showAllItems();
   }
+  // forms =================
   get formFields() { //for find by ID
     return this.itemFindForm.controls;
   }  
@@ -66,6 +70,21 @@ export class ItemsComponent implements OnInit {
   get createFields() {
     return this.itemCreateForm.controls;
   }  
+  // ag-grid ==================
+columnDefs = [
+  { field: 'item_id', sortable: true, filter: true, resizable: true  },
+  { field: 'name', sortable: true, filter: true, resizable: true  },
+  { field: 'price', sortable: true, filter: true, resizable: true  },
+  { field: 'stock', sortable: true, filter: true, resizable: true  },
+  { field: 'description', sortable: true, filter: true, resizable: true  },
+  { field: 'itemImageUrl', sortable: true, filter: true, resizable: true  },
+  { field: 'genre_id', sortable: true, filter: true, resizable: true }
+];
+
+rowData: any;
+
+
+  //functions ==================
   updateItem(){
     let updatedItem = new Item;
     updatedItem.$item_id = this.updateFields.idUpdate.value;
@@ -81,7 +100,6 @@ export class ItemsComponent implements OnInit {
       () => {
         console.log('Update successful!');
       },
-      // if an error occurs, execute the function below
       err => {
         console.log(err);
       },
@@ -124,28 +142,14 @@ export class ItemsComponent implements OnInit {
   }
 
   showAllItems(): void{
-    //apparently we don't need to parse it.
-      //if we try to parse it (again), we will have committed a cardinal sin
-        //my punishment was 3 hours of my life gone forever. 
-          //thank you typescript
-    
-
-    this.itemService.getAllItems().subscribe( //get the stuff
-      resp=>{ //take the response (should be a json)
+    this.itemService.getAllItems().subscribe(
+      resp=>{ 
           console.log("resp.body: "+resp.body);
-          // console.log("body length"+resp.body.length);
-          // let respJSON = JSON.parse(resp.body);
           let respJSON = resp.body;
-          console.log("json: "+respJSON);
-          console.log('0.id: '+ respJSON[0].id); //THIS ONE RIGHT HERE. THIS WORKS
           let length = Object.keys(respJSON).length; 
-          //this is cute. we can't just use .length in typescript. 
-            //that's heresy. of course. why would you want to know the length of a json array? 
-              //only heathens want that. you're not a heathen, are you? 
-                //of course not. 
-          console.log("length: "+ length); //(of course not)
-          console.log('Response:'+resp.status);
+
           if(resp.status == 200){ //FIX THIS depending on returned code
+            this.rowData = respJSON; //this assigns the json to the ag-grid table
 
             for( let i = 0; i < length ; i++){
               let newItem = new Item();
@@ -155,7 +159,7 @@ export class ItemsComponent implements OnInit {
               newItem.$stock = respJSON[i].stock;
               newItem.$description = respJSON[i].description;
               newItem.$itemImageUrl = respJSON[i].itemImageUrl;
-              newItem.$genre_id = respJSON[i].genre_id;
+              newItem.$genre_id = respJSON[i].genre;
               this.items.unshift(newItem); //adding item to array
               console.log('Added item with id of: '+ respJSON[i]["id"]);
             }
@@ -167,9 +171,9 @@ export class ItemsComponent implements OnInit {
           console.log(err.status);
       }
   );
-    //then show the div
-    this.revealItems();
-    // return itemArray;
+    // //then show the div
+    // this.revealItems();
+    // // return itemArray;
   }
 
   showItem(){
@@ -197,13 +201,13 @@ export class ItemsComponent implements OnInit {
           console.log(err.status);
       }
   );
-    this.revealItems();
+    // this.revealItems();
   }
 
-  revealItems(){ //show toggler
-    if(this.show==false){
-      this.show=true;
-    } 
-  }
+  // revealItems(){ //show toggler
+  //   if(this.show==false){
+  //     this.show=true;
+  //   } 
+  // }
 
 }

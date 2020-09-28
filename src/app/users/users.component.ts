@@ -3,6 +3,7 @@ import { UserService } from '../services/user.service';
 import { User } from '../models/user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -13,15 +14,19 @@ export class UsersComponent implements OnInit {
   //ROUTING NOTE: This is the admindashboard
 
   users = new Array;
-  show = false; //for the display div
+  revealAllUsers = false; //for the display div
+  // showUser = false; //for the display div
   userFindForm: FormGroup;
   userUpdateForm: FormGroup;
   userDeleteForm: FormGroup;
   targetUser = new User;
   tgtUser = new Array;
+ 
   
-  constructor(private userService:UserService, private formBuilder: FormBuilder) {
-
+  constructor(
+    private userService:UserService, 
+    private formBuilder: FormBuilder
+    ){
   }
 
   ngOnInit(): void {
@@ -42,7 +47,10 @@ export class UsersComponent implements OnInit {
       roleUpdate: ['', Validators.required]
     });
 
+    //populate user tables on init
+    this.showAllUsers();
   }
+  // forms ===========
   get formFields() {
     return this.userFindForm.controls;
   }  
@@ -52,7 +60,20 @@ export class UsersComponent implements OnInit {
   get deleteFields() {
     return this.userDeleteForm.controls;
   }  
+// ag-grid
+columnDefs = [
+  { field: 'id', sortable: true, filter: true, resizable: true  },
+  { field: 'username', sortable: true, filter: true, resizable: true  },
+  { field: 'password', sortable: true, filter: true, resizable: true  },
+  { field: 'email', sortable: true, filter: true, resizable: true  },
+  { field: 'firstName', sortable: true, filter: true, resizable: true  },
+  { field: 'lastName', sortable: true, filter: true, resizable: true  },
+  { field: 'role', sortable: true, filter: true, resizable: true }
+];
 
+rowData: any;
+
+// functions ===========
   updateUser(){
     let updatedUser = new User;
     updatedUser.$user_id = this.updateFields.idUpdate.value;
@@ -112,7 +133,9 @@ export class UsersComponent implements OnInit {
           console.log("length: "+ length); //(of course not)
           console.log('Response:'+resp.status);
           if(resp.status == 200){ //FIX THIS depending on returned code
+            this.rowData = respJSON; //this assigns the json to the ag-grid table
 
+            //this is currently unneeded, but we might can use the array later
             for( let i = 0; i < length ; i++){
               let newUser = new User();
               newUser.$user_id = respJSON[i].id; //FIX THIS depending on what backend sends back
@@ -125,7 +148,7 @@ export class UsersComponent implements OnInit {
               this.users.unshift(newUser); //adding user to array
               console.log('Added user with id of: '+ respJSON[i]["id"]);
             }
-            console.log("Total users added: "+this.users.length);
+            // console.log("Total users added: "+this.users.length);
           }
           
       },
@@ -133,43 +156,46 @@ export class UsersComponent implements OnInit {
           console.log(err.status);
       }
   );
+
     //then show the div
-    this.revealUsers();
+    // this.revealUsers();
     // return userArray;
   }
 
-  showUser(){
-    let id = this.formFields.id.value;
-    this.userService.getTargetUser(id).subscribe( //get the stuff
-      resp=>{ //take the response (should be a json)
+  // NOTE: currently disabling this since i don't see a point in it
+  // showUser(){
+  //   let id = this.formFields.id.value;
+  //   this.userService.getTargetUser(id).subscribe( //get the stuff
+  //     resp=>{ //take the response (should be a json)
           
-          this.tgtUser.unshift(resp.body);
+  //         this.tgtUser.unshift(resp.body);
           
-          console.log('0.id: '+ this.tgtUser[0].id); //man this is so gross
-          console.log('Response:'+resp.status);
-          if(resp.status == 200){ 
-            let targetUser = new User();
-            targetUser.$user_id = this.tgtUser[0].id; //FIX THIS depending on what backend sends back
-            targetUser.$firstName = this.tgtUser[0].firstname;
-            targetUser.$lastName = this.tgtUser[0].lastname;
-            targetUser.$email = this.tgtUser[0].email;
-            targetUser.$username = this.tgtUser[0].username;
-            targetUser.$password = this.tgtUser[0].password;
-            console.log('Added user with id of: '+ this.tgtUser[0]["id"]);
-          }
-      },
-      err=>{
-          console.log(err.status);
-      }
-  );
-    this.revealUsers();
-  }
+  //         console.log('0.id: '+ this.tgtUser[0].id); //man this is so gross
+  //         console.log('Response:'+resp.status);
+  //         if(resp.status == 200){ 
+  //           let targetUser = new User();
+  //           targetUser.$user_id = this.tgtUser[0].id; //FIX THIS depending on what backend sends back
+  //           targetUser.$firstName = this.tgtUser[0].firstname;
+  //           targetUser.$lastName = this.tgtUser[0].lastname;
+  //           targetUser.$email = this.tgtUser[0].email;
+  //           targetUser.$username = this.tgtUser[0].username;
+  //           targetUser.$password = this.tgtUser[0].password;
+  //           console.log('Added user with id of: '+ this.tgtUser[0]["id"]);
+  //         }
+  //     },
+  //     err=>{
+  //         console.log(err.status);
+  //     }
+  // );
+  //   
+  // }
 
-  revealUsers(){ //show toggler
-    if(this.show==false){
-      this.show=true;
-    } 
-  }
+  //no longer needed
+  // revealUsers(){ //show toggler
+  //   if(this.revealAllUsers==false){
+  //     this.revealAllUsers=true;
+  //   } 
+  // }
 
 }
 

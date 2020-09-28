@@ -3,15 +3,28 @@
 
 <!-- get all items -->
 <div id="get-container" class="formcontainer">
-    <button class="btn btn-primary" (click)="showAllItems()">GET all items</button>
-    <div *ngIf="show">
+
+
+    <ag-grid-angular
+    style="width: 1000px; height: 400px;"
+        class="ag-theme-alpine"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        >
+    </ag-grid-angular>
+
+
+    <button class="btn btn-primary" (click)="showAllItems()">Refresh Item Table</button>
+
+
+    <!-- <div *ngIf="show">
         <p *ngFor="let item of items">
             <strong>Item:</strong>
             {{ item.item_id }}
             {{ item.name }}
             {{ item.price }}
         </p>
-    </div>
+    </div> -->
 </div>
 <!-- find item by id -->
 <div id="search-container" class="formcontainer">
