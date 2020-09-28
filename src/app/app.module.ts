@@ -28,6 +28,7 @@ import { ItemsComponent } from './items/items.component';
 // import { ItemsDashboardComponent } from './items-dashboard/items-dashboard.component'; // made this at first but don't need it I think
 import { OrdersComponent } from './orders/orders.component';
 import { OrderedItemsComponent } from './ordered-items/ordered-items.component';
+import { HotProductComponent } from './hot-product/hot-product.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { OrderedItemsComponent } from './ordered-items/ordered-items.component';
     ItemsComponent,
     // ItemsDashboardComponent,
     OrdersComponent,
-    OrderedItemsComponent
+    OrderedItemsComponent,
+    HotProductComponent
   ],
   imports: [
     BrowserModule,

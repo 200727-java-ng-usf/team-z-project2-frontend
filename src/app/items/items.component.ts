@@ -10,6 +10,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ItemsComponent implements OnInit {
 
+  //ROUTING NOTE: This is the managerdashboard
+
+
+
   items = new Array;
   show = false; //for the display div
   itemFindForm: FormGroup;

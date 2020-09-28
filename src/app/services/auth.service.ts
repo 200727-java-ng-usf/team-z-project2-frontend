@@ -54,9 +54,22 @@ export class AuthService {
 
   }
 
-  logout(): void {
-    this.http.get(`${env.API_URL}/auth`); // invalidate the server http session
+  logout():boolean{
+    // this.http.get(`${env.API_URL}/auth`); // invalidate the server http session
+    
     this.currentUserSubject.next(null); // makes the UI aware that the user has signed out
+    let response = this.http.get(`${env.API_URL}/auth`,{responseType:'json',observe:"response"});
+    response.subscribe(
+      resp=>{ 
+          console.log('Response: '+resp.status);
+          return true;
+      },
+      err=>{
+          console.log(err.status);
+          return false;
+      }
+    );
+    return true;
   }
 
   isAuthenticated(): boolean {
