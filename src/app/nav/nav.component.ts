@@ -15,6 +15,8 @@ export class NavComponent implements OnDestroy {
   currentUserSub: Subscription = null;
   loggedin: boolean = false;
   isUser: boolean = false;
+  isManager: boolean = false;
+  isAdmin: boolean = false;
  
   constructor(private authService: AuthService, private router: Router) {
     this.currentUserSub = this.authService.currentUser$.subscribe(user => {
@@ -31,6 +33,14 @@ export class NavComponent implements OnDestroy {
         if(this.currentUser.role=="User"){
           this.isUser=true;
           console.log("Is User: "+this.isUser);
+        } 
+        if(this.currentUser.role=="Admin"){
+          this.isAdmin=true;
+          console.log("Is Admin: "+this.isAdmin);
+        } 
+        if(this.currentUser.role=="Manager"){
+          this.isManager=true;
+          console.log("Is Manager: "+this.isManager);
         } 
       } 
 
@@ -93,7 +103,12 @@ export class NavComponent implements OnDestroy {
   }
 
   logout() {
-    this.authService.logout();
+    this.loggedin = !this.authService.logout();
+    if(!this.loggedin){
+      this.isUser=false;
+      this.isManager=false;
+      this.isAdmin=false;
+    }
     this.router.navigate(['']); //point this back home. OLD: '/login'
   }
 
