@@ -77,8 +77,8 @@ export class NavComponent implements OnDestroy {
       fragment: ''
     },
     {
-      linkName: 'User Info', //for testing atm
-      fragment: '/userinfo'
+      linkName: 'User Dashboard', //for testing atm
+      fragment: '/userdashboard'
     },
     {
       linkName: 'Cart',

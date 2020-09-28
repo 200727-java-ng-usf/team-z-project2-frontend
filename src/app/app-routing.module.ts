@@ -9,6 +9,7 @@ import { NotFoundComponent } from './not-found/not-found.component'; //404 endpo
 import { StorefrontComponent } from './storefront/storefront.component'; //front page
 import { OrdersComponent } from './orders/orders.component';
 import { OrderedItemsComponent } from './ordered-items/ordered-items.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
   { path: '', component: StorefrontComponent}, //the landing page, currently set to storefront
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'items', component: ItemsComponent },
   { path: 'orders', component: OrdersComponent},
   { path: 'ordereditems', component: OrderedItemsComponent},
+  { path: 'userdashboard', component: UserDashboardComponent},
   //
   { path: '**', component: NotFoundComponent } // wildcard routes should ALWAYS go last
 ];
