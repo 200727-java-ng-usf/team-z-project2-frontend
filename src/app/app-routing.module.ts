@@ -3,13 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 //components
 import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
-import { ItemsComponent } from './items/items.component';
 import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './not-found/not-found.component'; //404 endpoint
 import { StorefrontComponent } from './storefront/storefront.component'; //front page
-import { OrdersComponent } from './orders/orders.component';
-import { OrderedItemsComponent } from './ordered-items/ordered-items.component';
+// import { OrdersComponent } from './orders/orders.component';
+// import { OrderedItemsComponent } from './ordered-items/ordered-items.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { ItemsComponent } from './items/items.component';
 
 const routes: Routes = [
   { path: '', component: StorefrontComponent}, //the landing page, currently set to storefront
@@ -18,8 +18,8 @@ const routes: Routes = [
   { path: 'storefront', component: StorefrontComponent },
   { path: 'admindashboard', component: UsersComponent }, //admin dashboard
   { path: 'managerdashboard', component: ItemsComponent }, //manager dashboard
-  { path: 'orders', component: OrdersComponent},
-  { path: 'ordereditems', component: OrderedItemsComponent},
+  // { path: 'orders', component: OrdersComponent},
+  // { path: 'ordereditems', component: OrderedItemsComponent},
   { path: 'userdashboard', component: UserDashboardComponent}, //user dashboard
   //
   { path: '**', component: NotFoundComponent } // wildcard routes should ALWAYS go last

@@ -1,19 +1,32 @@
-<p>users works!</p>
+
+<p>Admin Dashboard</p>
 
 <!-- get all users -->
 <div id="get-container" class="formcontainer">
-    <button class="btn btn-primary" (click)="showAllUsers()">GET all users</button>
-    <div *ngIf="show">
-        <p *ngFor="let user of users">
+    
+    <!-- <div *ngIf="showAllUsers"> -->
+        <!-- ag-grid table api -->
+        <ag-grid-angular
+        style="width: 1000px; height: 400px;"
+            class="ag-theme-alpine"
+            [rowData]="rowData"
+            [columnDefs]="columnDefs"
+            
+            >
+        </ag-grid-angular>
+        <!-- (gridReady)="onGridReady($event)" -->
+
+        <button class="btn btn-primary" (click)="showAllUsers()">Refresh Users Table</button>
+        <!-- <p *ngFor="let user of users">
             <strong>User:</strong>
             {{ user.user_id }}
             {{ user.username }}
             {{ user.role }}
-        </p>
-    </div>
+        </p> -->
+    <!-- </div> -->
 </div>
-<!-- find user by id -->
-<div id="search-container" class="formcontainer">
+<!-- find user by id: ========= Not much of a point in using. -->
+<!-- <div id="search-container" class="formcontainer">
     <form [formGroup]="userFindForm" (ngSubmit)="showUser()">
         
 
@@ -31,7 +44,7 @@
         {{ tgtUser[0].user_id }}
         {{ tgtUser[0].username }}
     </p>
-</div>
+</div> -->
 <!-- delete by id -->
 <div id="delete-container" class="formcontainer">
     <form [formGroup]="userDeleteForm" (ngSubmit)="deleteUser()">

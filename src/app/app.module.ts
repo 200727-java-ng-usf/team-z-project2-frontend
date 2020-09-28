@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AgGridModule } from 'ag-grid-angular'; //ag-grid API: if not installed, use npm install --save ag-grid-community ag-grid-angular
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
   //notes on bootstrap:
     //will need to be installed after the other node_modules
@@ -36,6 +37,7 @@ import { HotProductComponent } from './hot-product/hot-product.component';
     NavComponent,
     // ModelsComponent,
     // OrderComponent,
+    // ItemsDashboardComponent,
     LoginComponent,
     NotFoundComponent,
     StorefrontComponent,
@@ -43,7 +45,6 @@ import { HotProductComponent } from './hot-product/hot-product.component';
     UsersComponent,
     UserDashboardComponent,
     ItemsComponent,
-    // ItemsDashboardComponent,
     OrdersComponent,
     OrderedItemsComponent,
     HotProductComponent
@@ -54,7 +55,8 @@ import { HotProductComponent } from './hot-product/hot-product.component';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    AgGridModule.withComponents([])
   ],
   providers: [],
   bootstrap: [AppComponent]
