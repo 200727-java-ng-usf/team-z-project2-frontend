@@ -16,11 +16,11 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'storefront', component: StorefrontComponent },
-  { path: 'users', component: UsersComponent }, //may need to be renamed if the url conflicts with http methods
-  { path: 'items', component: ItemsComponent },
+  { path: 'admindashboard', component: UsersComponent }, //admin dashboard
+  { path: 'managerdashboard', component: ItemsComponent }, //manager dashboard
   { path: 'orders', component: OrdersComponent},
   { path: 'ordereditems', component: OrderedItemsComponent},
-  { path: 'userdashboard', component: UserDashboardComponent},
+  { path: 'userdashboard', component: UserDashboardComponent}, //user dashboard
   //
   { path: '**', component: NotFoundComponent } // wildcard routes should ALWAYS go last
 ];

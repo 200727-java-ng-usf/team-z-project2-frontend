@@ -9,6 +9,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+
+  //ROUTING NOTE: This is the admindashboard
+
   users = new Array;
   show = false; //for the display div
   userFindForm: FormGroup;

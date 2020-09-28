@@ -2,6 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Principal } from '../models/principal';
 import { AuthService } from '../services/auth.service';
 
 //self identification, loaders
@@ -16,9 +18,16 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
+  //for post-login routing:
+  currentUser: Principal = null;
+  currentUserSub: Subscription = null;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
     console.log('LoginComponent instantiating...');
+    this.currentUserSub = this.authService.currentUser$.subscribe(user => {
+      this.currentUser = user; //getting the user, to check its role for routing post-login
+    });
+
     console.log('LoginComponent instantiation complete.');
   }
 
@@ -48,8 +57,18 @@ export class LoginComponent implements OnInit {
                         this.loading = false;
                         console.log('login successful!');
                         console.log('Navigating to dashboard...');
-                        this.router.navigate(['/dashboard']); //point this wherever
-                        //we can include logic at this part to direct based on role
+
+                        if(this.currentUser.role=="User"){
+                          this.router.navigate(['/userdashboard']);
+                        } else if (this.currentUser.role=="Manager"){
+                          this.router.navigate(['/managerdashboard']);
+                        } else if (this.currentUser.role=="Admin"){
+                          this.router.navigate(['/admindashboard']);
+                        } else {
+                          this.router.navigate(['/404']);
+                        }
+
+
                       },
                       // if an error occurs, execute the function below
                       err => {
