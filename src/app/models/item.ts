@@ -2,34 +2,34 @@
 
 export class Item {
     //id name price stock description itemImageUrl genre_id
-	item_id: number;
+	id: number;
     name: string;
     price: string;
 	stock: number; //unsure about camel case when interacting with backend
 	description: string;
     itemImageUrl: string;
-    genre_id: string; //may need to change back to number, depending on what is sent back
+    genre: string; //may need to change back to number, depending on what is sent back
     
     constructor() {}
 
     public setAll(newItem:Item):void{
-		this.$item_id = newItem.$item_id;
+		this.$id = newItem.$id;
 		this.$name = newItem.$name;
         this.$price = newItem.$price;
         this.$stock = newItem.$stock;
         this.$description = newItem.$description;
         this.$itemImageUrl = newItem.$itemImageUrl;
-        this.$genre_id = newItem.$genre_id;
+        this.$genre = newItem.$genre;
     }
 
     //getters, setters===============
     //id=============
-	public get $item_id(): number {
-		return this.item_id;
+	public get $id(): number {
+		return this.id;
 	}
 
-	public set $item_id(value: number) {
-		this.item_id = value;
+	public set $id(value: number) {
+		this.id = value;
 	}
 
     //name=============
@@ -78,11 +78,11 @@ export class Item {
     }
 
     //genre_id=============
-	public get $genre_id(): string {
-		return this.genre_id;
+	public get $genre(): string {
+		return this.genre;
 	}
 
-	public set $genre_id(value: string) {
-		this.genre_id = value;
+	public set $genre(value: string) {
+		this.genre = value;
     }
 }
