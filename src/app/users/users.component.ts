@@ -76,14 +76,14 @@ rowData: any;
 // functions ===========
   updateUser(){
     let updatedUser = new User;
-    updatedUser.$user_id = this.updateFields.idUpdate.value;
+    updatedUser.$id = this.updateFields.idUpdate.value;
     updatedUser.$username = this.updateFields.usernameUpdate.value;
     updatedUser.$password = this.updateFields.passwordUpdate.value;
     updatedUser.$email = this.updateFields.emailUpdate.value;
     updatedUser.$firstName = this.updateFields.firstNameUpdate.value;
     updatedUser.$lastName = this.updateFields.lastNameUpdate.value;
     updatedUser.$role = this.updateFields.roleUpdate.value;
-    console.log("Updated user: "+ updatedUser);
+    console.log("Updated user: "+ updatedUser.id);
     this.userService.updateTargetUser(updatedUser)
     .subscribe(
       () => {
@@ -138,7 +138,7 @@ rowData: any;
             //this is currently unneeded, but we might can use the array later
             for( let i = 0; i < length ; i++){
               let newUser = new User();
-              newUser.$user_id = respJSON[i].id; //FIX THIS depending on what backend sends back
+              newUser.$id = respJSON[i].id; //FIX THIS depending on what backend sends back
               newUser.$firstName = respJSON[i].firstname;
               newUser.$lastName = respJSON[i].lastname;
               newUser.$email = respJSON[i].email;

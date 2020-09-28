@@ -11,7 +11,7 @@
 
 export class User {
 
-	user_id: number;
+	id: number;
     username: string;
     password: string;
 	firstName: string; //unsure about camel case when interacting with backend
@@ -22,7 +22,7 @@ export class User {
     constructor() {}
 
     public setAll(newUser:User):void{
-		this.$user_id = newUser.$user_id;
+		this.$id = newUser.$id;
 		this.$username = newUser.$username;
         this.$password = newUser.$password;
         this.$firstName = newUser.$firstName;
@@ -33,12 +33,12 @@ export class User {
 
     //getters, setters===============
     //id=============
-	public get $user_id(): number {
-		return this.user_id;
+	public get $id(): number {
+		return this.id;
 	}
 
-	public set $user_id(value: number) {
-		this.user_id = value;
+	public set $id(value: number) {
+		this.id = value;
 	}
 
     //username=============
