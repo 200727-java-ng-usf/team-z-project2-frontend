@@ -9,6 +9,7 @@ export class Item {
 	description: string;
     itemImageUrl: string;
     genre: string; //may need to change back to number, depending on what is sent back
+  	btn: string;
     
     constructor() {}
 
