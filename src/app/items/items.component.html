@@ -1,0 +1,152 @@
+
+<!-- ============================ -->
+
+<!-- get all items -->
+<div id="get-container" class="formcontainer">
+
+
+    <ag-grid-angular
+    style="width: 1000px; height: 400px;"
+        class="ag-theme-alpine"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        >
+    </ag-grid-angular>
+
+
+    <button class="btn btn-primary" (click)="showAllItems()">Refresh Item Table</button>
+
+
+    <!-- <div *ngIf="show">
+        <p *ngFor="let item of items">
+            <strong>Item:</strong>
+            {{ item.item_id }}
+            {{ item.name }}
+            {{ item.price }}
+        </p>
+    </div> -->
+</div>
+<!-- find item by id -->
+<div id="search-container" class="formcontainer">
+    <form [formGroup]="itemFindForm" (ngSubmit)="showItem()">
+        
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input id="id" class="form-control" formControlName="id"/>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Get item by id</button>
+        </div>
+    </form>
+    <p *ngIf="show">
+        <strong>Item:</strong>
+        {{ tgtItem[0].item_id }}
+        {{ tgtItem[0].name }}
+    </p>
+</div>
+<!-- delete by id -->
+<div id="delete-container" class="formcontainer">
+    <form [formGroup]="itemDeleteForm" (ngSubmit)="deleteItem()">
+        
+        <div class="form-group">
+            <label for="idDelete">ID</label>
+            <input id="idDelete" class="form-control" formControlName="idDelete"/>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Delete target item</button>
+        </div>
+        <!-- may include success/fail message here -->
+    </form>
+</div>
+
+<!-- update -->
+<div id="update-container" class="formcontainer">
+    <form [formGroup]="itemUpdateForm" (ngSubmit)="updateItem()">
+
+        <div class="form-group">
+            <label for="idUpdate">ID</label>
+            <input id="idUpdate" type="text" class="form-control" formControlName="idUpdate"/>
+        </div>
+
+        <div class="form-group">
+            <label for="nameUpdate">Name</label>
+            <input id="nameUpdate" type="text" class="form-control" formControlName="nameUpdate"/>
+        </div>
+
+        <div class="form-group">
+            <label for="priceUpdate">Price</label>
+            <input id="priceUpdate" type="text" class="form-control" formControlName="priceUpdate"/>
+        </div>
+
+        <div class="form-group">
+            <label for="stockUpdate">Stock</label>
+            <input id="stockUpdate" type="text" class="form-control" formControlName="stockUpdate"/>
+        </div>
+
+        <div class="form-group">
+            <label for="descriptionUpdate">Description</label>
+            <input id="descriptionUpdate" type="text" class="form-control" formControlName="descriptionUpdate"/>
+        </div>
+
+        <div class="form-group">
+            <label for="urlUpdate">URL</label>
+            <input id="urlUpdate" type="text" class="form-control" formControlName="urlUpdate"/>
+        </div>
+        <div class="form-group">
+            <label for="genreUpdate">Genre</label>
+            <input id="genreUpdate" type="text" class="form-control" formControlName="genreUpdate"/>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Update</button>
+        </div>
+        <!-- may include success/fail message here -->
+    </form>
+</div>
+
+<!-- create -->
+<div id="create-container" class="formcontainer">
+    <form [formGroup]="itemCreateForm" (ngSubmit)="createItem()">
+
+        <!-- <div class="form-group"> 
+            <label for="idUpdate">ID</label>
+            <input id="idUpdate" type="text" class="form-control" formControlName="idUpdate"/>
+        </div> -->
+
+        <div class="form-group">
+            <label for="nameCreate">Name</label>
+            <input id="nameCreate" type="text" class="form-control" formControlName="nameCreate"/>
+        </div>
+
+        <div class="form-group">
+            <label for="priceCreate">Price</label>
+            <input id="priceCreate" type="text" class="form-control" formControlName="priceCreate"/>
+        </div>
+
+        <div class="form-group">
+            <label for="stockCreate">Stock</label>
+            <input id="stockCreate" type="text" class="form-control" formControlName="stockCreate"/>
+        </div>
+
+        <div class="form-group">
+            <label for="descriptionCreate">Description</label>
+            <input id="descriptionCreate" type="text" class="form-control" formControlName="descriptionCreate"/>
+        </div>
+
+        <div class="form-group">
+            <label for="urlCreate">URL</label>
+            <input id="urlCreate" type="text" class="form-control" formControlName="urlCreate"/>
+        </div>
+        <div class="form-group">
+            <label for="genreCreate">Genre</label>
+            <input id="genreCreate" type="text" class="form-control" formControlName="genreCreate"/>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Create</button>
+        </div>
+        <!-- may include success/fail message here -->
+    </form>
+</div>

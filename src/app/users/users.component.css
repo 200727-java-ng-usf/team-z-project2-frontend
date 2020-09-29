@@ -1,0 +1,16 @@
+
+
+/* .formcontainer{
+    min-width:250px;
+    max-width:500px;
+    margin: auto;
+    border: 1px solid black;
+    padding: 5px;
+} */
+.formcontainer{
+    min-width:250px;
+    max-width:90%;
+    margin: auto;
+    border: 1px solid black;
+    padding: 5px;
+}

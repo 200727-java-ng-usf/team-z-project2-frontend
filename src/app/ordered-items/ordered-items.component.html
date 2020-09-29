@@ -1,0 +1,33 @@
+<p>ordered-items works!</p>
+
+
+<button (click)="showAllOrderedItems()">GET all orderedItems</button>
+<div *ngIf="show">
+    <p *ngFor="let orderedItem of OrderedItems">
+        <strong>OrderedItem:</strong>
+        {{ orderedItem.id }}
+        {{ orderedItem.order }}
+        {{ orderedItem.item }}
+    </p>
+</div>
+
+<!-- method not yet tested -->
+<div id="search-container">
+    <form [formGroup]="orderedItemFindForm" (ngSubmit)="showOrderedItem()">
+        
+
+        <div class="form-group">
+            <label for="id">Password</label>
+            <input id="id" class="form-control" formControlName="id"/>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Get orderedItem by id</button>
+        </div>
+    </form>
+    <p *ngIf="show">
+        <strong>OrderedItem:</strong>
+        {{ tgtOrderedItem[0].id }}
+        {{ tgtOrderedItem[0].order }}
+    </p>
+</div>
