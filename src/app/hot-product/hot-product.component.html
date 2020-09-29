@@ -2,52 +2,21 @@
 <div class="main-bottom">
     <div class="sub-bottom-nav">
       <h1>Hot Product</h1>
-      <div class="sub-nav-info">
-        <a href="javascript:void(0)">Hat1</a>|
-        <a href="javascript:void(0)">Hat2</a>|
-        <a href="javascript:void(0)">Hat3</a>|
-        <a href="javascript:void(0)">Hat4</a>|
-  
+ 
       </div>
     </div>
+
+    <ul>
+      <li *ngFor="let item of items let num = index">
     <div class="single-sale">
       <a href="javascript:void(0)">
-        <img data-original="../../assets/hat_1.jpg">
-        <h3>Nice Hat 1</h3>
+        <img src="assets/img/hat_5.jpg">
+        
+        <h3>{{item.name}}</h3>
+        <h5>Product ID: 0000{{item.id}}</h5>
       </a>
-      <p><span class="orange">$&nbsp;</span><span class="orange">20.00</span><span class="send-free">Free Shipping</span></p>
+      <p><span class="orange">$&nbsp;</span><span class="orange">{{item.price}}</span><span class="send-free">Free Shipping</span></p>
       <p class="gary-text"><span>$&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>Top sale!!</span></p>
     </div>
-    <div class="single-sale">
-      <a href="javascript:void(0)">
-        <img src="assets/img/hat_2.jpg">
-        <h3>Nice Hat 2</h3>
-      </a>
-      <p><span class="orange">$&nbsp;</span><span class="orange">29.00</span><span class="send-free">Free Shipping</span></p>
-      <p class="gary-text"><span>$&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>Top sale!!</span></p>
-    </div>
-    <div class="single-sale">
-      <a href="javascript:void(0)">
-        <img src="assets/img/hat_3.jpg">
-        <h3>Nice Hat 3</h3>
-      </a>
-      <p><span class="orange">$&nbsp;</span><span class="orange">129.00</span><span class="send-free">Free Shipping</span></p>
-      <p class="gary-text"><span>$&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>Top sale!!</span></p>
-    </div>
-    <div class="single-sale">
-      <a href="javascript:void(0)">
-        <img src="assets/img/hat_4.jpg">
-        <h3>Nice Hat 4</h3>
-      </a>
-      <p><span class="orange">$&nbsp;</span><span class="orange">129.00</span><span class="send-free">Free Shipping</span></p>
-      <p class="gary-text"><span>$&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>Top sale!!</span></p>
-    </div>
-    <div class="single-sale">
-      <a href="javascript:void(0)">
-        <img src ="assets/img/hat_5.jpg">
-        <h3>Nice Hat 5</h3>
-      </a>
-      <p><span class="orange">￥&nbsp;</span><span class="orange">129.00</span><span class="send-free">Free Shipping</span></p>
-      <p class="gary-text"><span>￥&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>Top sale!!</span></p>
-    </div>
-  </div>
+  </li>
+</ul>
