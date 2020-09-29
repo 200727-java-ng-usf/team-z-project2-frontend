@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../services/item.service';
 import { Item } from '../models/item';
+import {StorageService} from '../services/storage.service'
 
 declare let $:any;
 
@@ -16,13 +17,23 @@ export class HotProductComponent implements OnInit {
   rowData: any;
   newItem = new Item();
 
-  constructor(private itemService:ItemService) { }
+  constructor(private itemService:ItemService,public storage:StorageService) { }
 
   ngOnInit() {
+
+    var hotproduct = this.storage.get('hotproduct');
+    if(hotproduct!= null){
+
+     this.hotProduct = hotproduct;
+    }
     this.showAllItems();
     console.log(this.newItem.id);
     
   }
+
+  public keywords:string;
+
+  public hotProduct:any[] = [];
 
   showAllItems(): void{
     this.itemService.getAllItems().subscribe(
@@ -59,5 +70,32 @@ export class HotProductComponent implements OnInit {
     // this.revealItems();
     // // return itemArray;
   }
+
+  doAdd(item:Item){
+     
+      this.hotProduct.push(item)
+
+      this.storage.set('hotproduct',this.hotProduct);
+
+    
+}
+
+deleteData(key){
+
+  this.hotProduct.splice(key,1);   // delete 1 item from position key
+
+  this.storage.set('hotproduct',this.hotProduct);    // set new todolist in localstorage
+
+}
+
+
+
+checkboxChange(){
+
+  this.storage.set('hotproduct',this.hotProduct);  // after list change save data
+
+
+}
+
 
 }

@@ -30,6 +30,7 @@ import { ItemsComponent } from './items/items.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderedItemsComponent } from './ordered-items/ordered-items.component';
 import { HotProductComponent } from './hot-product/hot-product.component';
+import {StorageService} from './services/storage.service'
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import { HotProductComponent } from './hot-product/hot-product.component';
     HttpClientModule,
     AgGridModule.withComponents([])
   ],
-  providers: [],
+  providers: [StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

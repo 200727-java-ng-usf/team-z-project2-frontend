@@ -10,13 +10,34 @@
       <li *ngFor="let item of items let num = index">
     <div class="single-sale">
       <a href="javascript:void(0)">
-        <img src="assets/img/hat_5.jpg">
+         <img src="assets/img/hat_5.jpg">    <!--Item URL Here-->
         
         <h3>{{item.name}}</h3>
         <h5>Product ID: 0000{{item.id}}</h5>
       </a>
-      <p><span class="orange">$&nbsp;</span><span class="orange">{{item.price}}</span><span class="send-free">Free Shipping</span></p>
+      <p><span class="orange">$&nbsp;</span><span class="orange">{{item.price}}</span>&nbsp;|&nbsp;<span class="send-free">Free Shipping</span></p>
       <p class="gary-text"><span>$&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>Top sale!!</span></p>
+      <button (click)="doAdd(item)">Add to the Cart</button>
     </div>
   </li>
 </ul>
+
+
+<hr>
+<h1>Cart</h1>
+<ul>
+  <li *ngFor="let item of hotProduct let num = index">
+<div class="single-sale">
+  <a href="javascript:void(0)">
+     <img src="assets/img/hat_5.jpg">    <!--Item URL Here-->
+    
+    <h3>{{item.name}}</h3>
+    <h5>Product ID: 0000{{item.id}}</h5>
+  </a>
+  <p><span class="orange">$&nbsp;</span><span class="orange">{{item.price}}</span>&nbsp;|&nbsp;<span class="send-free">Free Shipping</span></p>
+  <p class="gary-text"><span>$&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>Top sale!!</span></p>
+  <button (click)="deleteData(key)">Delete</button>
+</div>
+</li>
+</ul>
+
