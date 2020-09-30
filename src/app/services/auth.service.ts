@@ -36,19 +36,26 @@ export class AuthService {
     // let credentials = { username, password }; //original
     let credentials = { username, password, role };
     console.log(`sending credentials, ${credentials}, to ${env.API_URL}/auth`);
-    //here are the REST targets
     return this.http.post(`${env.API_URL}/auth`, credentials, {
       headers: {
         'Content-type': 'application/json'
       },
-      observe: 'response' // default is body (which refers to the body of the response)
-    }).pipe( //from here on, referred to as 'piperroni'
+      observe: 'response' 
+    }).pipe( 
       
       map(resp => {
-        let principal = resp.body as Principal; // another form of casting (using the 'as' keyword)
+        let principal = resp.body as Principal;
+        //SHOPPING LOGIC:
+          //we can add logic here to initialize shopping cart data in the currentuser object
+            //then handle it through an order object within the user
+              //for now, i've only updated fields in the principle
+        principal.price = 0;
+        principal.itemCount = 0;
         this.currentUserSubject.next(principal);
         console.log('Principle: '+principal);
         console.log('Current user: '+ this.currentUserSubject);
+
+
       })
     );
 

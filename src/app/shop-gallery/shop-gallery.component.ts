@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../models/item';
 import { ItemService } from '../services/item.service';
+import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-shop-gallery',
@@ -11,7 +12,7 @@ export class ShopGalleryComponent implements OnInit {
 
   items = new Array;
 
-  constructor(private itemService: ItemService) { 
+  constructor(private itemService: ItemService, private orderService: OrderService) { 
 
   }
 
@@ -20,8 +21,8 @@ export class ShopGalleryComponent implements OnInit {
     this.buildItemArray();
   }
 
-  test(id){
-    alert(id);
+  addItemToCart(item){
+    this.orderService.addToCart(item);
   }
 
   buildItemArray(){

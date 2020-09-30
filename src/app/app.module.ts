@@ -39,6 +39,7 @@ import { OrderedItemsComponent } from './ordered-items/ordered-items.component';
 import { HotProductComponent } from './hot-product/hot-product.component';
 import { ShopGalleryComponent } from './shop-gallery/shop-gallery.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     OrdersComponent,
     OrderedItemsComponent,
     HotProductComponent,
-    ShopGalleryComponent
+    ShopGalleryComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
