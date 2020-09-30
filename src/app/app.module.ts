@@ -20,6 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
 // import { CardMaterialModule } from './material.module';
 // import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button'; 
 
 //COMPONENTS
 import { AppComponent } from './app.component';
@@ -64,6 +65,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
   imports: [
     BrowserModule,
     MatCardModule,
+    MatButtonModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
