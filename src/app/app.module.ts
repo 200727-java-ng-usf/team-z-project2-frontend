@@ -41,6 +41,9 @@ import { HotProductComponent } from './hot-product/hot-product.component';
 import { ShopGalleryComponent } from './shop-gallery/shop-gallery.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { SearchComponent } from './search/search.component';
+
+import {StorageService} from './services/storage.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     OrderedItemsComponent,
     HotProductComponent,
     ShopGalleryComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +78,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     AgGridModule.withComponents([]),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
