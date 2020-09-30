@@ -4,7 +4,7 @@ import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
 import { OrderService } from '../services/order.service';
 import { UserService } from '../services/user.service';
-
+import {StorageService} from '../services/storage.service'
 
 @Component({
   selector: 'app-checkout',
@@ -15,28 +15,50 @@ export class CheckoutComponent implements OnInit {
   order: Order = new Order;
   user: User = new User;
 
-  constructor(private authService: AuthService,private orderService: OrderService, private userService: UserService) {
-    console.log('Instantiating Checkout component...');
-    //Casting the user data into an order object
-      //we may need to move this depending on what the subscriptions/observables do
-    // this.order = this.authService.currentUserValue as Order;
-    this.order.user_id = this.authService.currentUserValue.id;
-    this.order.price = this.authService.currentUserValue.price;
-    this.order.itemCount = this.authService.currentUserValue.itemCount;
-    
-    //if we change how the tables work, we'll need to change this:
-    
-    // creating a new user object since angular is crying about casting again
-        // this.order.user = this.authService.currentUserValue as User;
+  constructor(
+    private authService: AuthService,
+    private orderService: OrderService, 
+    private storageService: StorageService
+    ) {
+      
+      
+      console.log('Instantiating Checkout component...');
 
-    this.user.id = this.authService.currentUserValue.id;
-    this.user.username = this.authService.currentUserValue.username;
-    this.user.role = this.authService.currentUserValue.role;
-    // this.order.user = this.userService.getTargetUser(this.user.id);
+      //add price and itemcount from currentUserValue to the order
+      this.order.price = this.authService.currentUserValue.price;
+      this.order.itemCount = this.authService.currentUserValue.itemCount;
+      //take User object from session data and add that as well
+      this.order.user = this.storageService.get("userData");
 
-    // still throws an error...
-      // for now, we can either just feed the backend the USER ID, instead of a full object
-      // or somehow cowboy it into submission. 
+      //debug testing
+      console.log("Order price: "+this.order.price);
+      console.log("Order item count: "+this.order.itemCount);
+      console.log("Order User ID: "+ this.order.user.id);
+      console.log("Order User email: "+this.order.user.email);
+
+
+
+
+      // //Casting the user data into an order object
+      //   //we may need to move this depending on what the subscriptions/observables do
+      // // this.order = this.authService.currentUserValue as Order;
+      // this.order.user_id = this.authService.currentUserValue.id;
+      // this.order.price = this.authService.currentUserValue.price;
+      // this.order.itemCount = this.authService.currentUserValue.itemCount;
+      
+      // //if we change how the tables work, we'll need to change this:
+      
+      // // creating a new user object since angular is crying about casting again
+      //     // this.order.user = this.authService.currentUserValue as User;
+
+      // this.user.id = this.authService.currentUserValue.id;
+      // this.user.username = this.authService.currentUserValue.username;
+      // this.user.role = this.authService.currentUserValue.role;
+      // // this.order.user = this.userService.getTargetUser(this.user.id);
+
+      // // still throws an error...
+      //   // for now, we can either just feed the backend the USER ID, instead of a full object
+      //   // or somehow cowboy it into submission. 
 
    }
 
