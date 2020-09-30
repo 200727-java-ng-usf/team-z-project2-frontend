@@ -36,7 +36,7 @@ export class ShopGalleryComponent implements OnInit {
               let newItem = new Item();
               newItem.$id = respJSON[i].id; //FIX THIS depending on what backend sends back
               newItem.$name = respJSON[i].name;
-              newItem.$price = respJSON[i].price;
+              newItem.$price = respJSON[i].price.toFixed(2);
               newItem.$stock = respJSON[i].stock;
               newItem.$description = respJSON[i].description;
               newItem.$itemImageUrl = respJSON[i].itemImageUrl;
