@@ -20,6 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
 // import { CardMaterialModule } from './material.module';
 // import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button'; 
 
 //COMPONENTS
 import { AppComponent } from './app.component';
@@ -39,6 +40,7 @@ import { OrderedItemsComponent } from './ordered-items/ordered-items.component';
 import { HotProductComponent } from './hot-product/hot-product.component';
 import { ShopGalleryComponent } from './shop-gallery/shop-gallery.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -57,11 +59,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     OrdersComponent,
     OrderedItemsComponent,
     HotProductComponent,
-    ShopGalleryComponent
+    ShopGalleryComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
     MatCardModule,
+    MatButtonModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

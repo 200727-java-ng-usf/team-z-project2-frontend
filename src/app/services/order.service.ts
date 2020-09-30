@@ -60,19 +60,36 @@ export class OrderService {
     return this.http.put(url,order,{responseType:'json',observe:"response"});
   }
 
-  addToCart() { // move this wherever. Untested
+  addToCart(item) { // move this wherever. Untested
+
+    if(!this.authService.currentUserValue){
+      alert("You must be logged in to do that!");
+      return;
+    }
+
     console.log('Adding to cart...');
+    
+    this.authService.currentUserValue.itemCount += 1;
+    this.authService.currentUserValue.price += item.price;
+    console.log("Item added: id "+item.id);
+    console.log("User: "+this.authService.currentUserValue.username);
+    console.log("Total: "+this.authService.currentUserValue.price);
+    console.log("# items: "+this.authService.currentUserValue.itemCount);
+
+    //NOTES: (Taking different approach for the sake of time...) -DR
+
     // below should access the user that is logged in
-    let authUser = this.authService.currentUserValue;
-    console.log(authUser);
-    console.log(authUser.username);
+    // // let authUser = this.authService.currentUserValue;
+    // console.log(authUser);
+    // console.log(authUser.username);
+
     // How to access the item that was clicked on?
     
     // if no order with current user as field exists...
       // Use OrderService below. May have to create method that is the 
       // response from /orders/user-id/{id}
       
-    if (true) { // replace the word true with logic.
+    // if (true) { // replace the word true with logic.
 
       // CREATE new order.
       // user field should be "authUser".
@@ -81,7 +98,7 @@ export class OrderService {
       // order field matches the order just created above.
       // item field matches item that the button is on.
 
-    } else { // if this block executes, user already has an order
+    // } else { // if this block executes, user already has an order
 
       // locate the order that exists (what if the user has multiple orders?)
       // UPDATE that order with the itemCount++ and the price += item's price
@@ -90,7 +107,7 @@ export class OrderService {
       // CREATE an orderedItem with the same item_id as the item button is on and
       // same order_id as the order that exists (again, what if multiple orders?)
 
-    }
+    // }
   }
 
 
