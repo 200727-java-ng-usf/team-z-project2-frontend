@@ -1,12 +1,26 @@
 <div class="search">
-    <input type="text"[(ngModel)]="keyword"> <button (click)="doSearch()">search</button>
+    <h5>Hats Mall Item </h5>
+    <input type="text"[(ngModel)]="keyword"> &nbsp;&nbsp;<button class="btn btn-secondary" (click)="doSearch()">search</button>
     <p>{{keyword}}</p>
+  
+</div>
+
+            <div *ngIf="isItemExist">
+           <img src={{newItem.itemImageUrl}}>    <!--Item URL Here-->
+          <h5>{{newItem.name}}</h5>
+          <h5>$&nbsp;{{newItem.price}}</h5>
+          <h5>Product ID: 0000{{newItem.id}}</h5>
+
+            </div>
+   
  
-    <hr>
+  
         <div *ngFor="let item of historyList; let key = index;">
-            <p>{{item}}</p>   <button (click)="deleteHistory(key)">Delete</button>
+          Search List:   {{item}}  <button class="btn btn-outline-success" (click)="deleteHistory(key)">cancel</button>
             
             
         </div>
 
-    </div>
+        <hr>
+
+   

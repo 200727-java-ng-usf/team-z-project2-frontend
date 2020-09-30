@@ -16,6 +16,7 @@ export class SearchComponent implements OnInit {
   rowData: any;
   newItem = new Item();
   public isFound:boolean
+  public isItemExist:boolean;
  
 
 
@@ -38,6 +39,8 @@ export class SearchComponent implements OnInit {
     public historyList:any[] =[];
   
     doSearch(){
+
+      this.isItemExist = false;
   
       if(this.historyList.indexOf(this.keyword)== -1){    // if != -1 there is duplicate value in the array
   
@@ -52,6 +55,7 @@ export class SearchComponent implements OnInit {
           console.log(this.keyword);
   
           if(this.items[i].name==this.keyword){
+            this.isItemExist = true;
             this.newItem=this.items[i];
           }
   

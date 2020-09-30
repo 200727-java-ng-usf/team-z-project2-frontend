@@ -1,7 +1,7 @@
 <!--main-bottom-->
 <div class="main-bottom">
     <div class="sub-bottom-nav">
-      <h1>New Product</h1>
+      <h3>New Product</h3>
  
       </div>
     </div>
@@ -9,7 +9,7 @@
       <div class="col-sm-4" *ngFor="let item of items let num = index">
     <div class="single-sale">
       <a href="javascript:void(0)">
-        <img src="assets/img/hat_5.jpg">
+        <img src={{item.itemImageUrl}}>
   
         <h3>{{item.name}}</h3>
         <h5>Product ID: 0000{{item.id}}</h5>
@@ -28,7 +28,7 @@
   <li *ngFor="let item of hotProduct let num = index">
 <div class="single-sale">
   <a href="javascript:void(0)">
-     <img src="assets/img/hat_5.jpg">    <!--Item URL Here-->
+     <img src={{item.itemImageUrl}}>    <!--Item URL Here-->
     <h5>Order No. {{num+1}}</h5>
     <h5>{{item.name}}</h5>
     <h5>$&nbsp;{{item.price}}</h5>
