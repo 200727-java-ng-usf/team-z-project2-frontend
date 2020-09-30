@@ -15,10 +15,11 @@ export class CheckoutComponent implements OnInit {
   order: Order = new Order;
   user: User = new User;
 
-  constructor(
+ constructor(
     private authService: AuthService,
     private orderService: OrderService, 
-    private storageService: StorageService
+    private storageService: StorageService,
+    private userService: UserService
     ) {
       
       
@@ -51,10 +52,10 @@ export class CheckoutComponent implements OnInit {
       // // creating a new user object since angular is crying about casting again
       //     // this.order.user = this.authService.currentUserValue as User;
 
-      // this.user.id = this.authService.currentUserValue.id;
-      // this.user.username = this.authService.currentUserValue.username;
-      // this.user.role = this.authService.currentUserValue.role;
-      // // this.order.user = this.userService.getTargetUser(this.user.id);
+      this.user.id = this.authService.currentUserValue.id;
+      this.user.username = this.authService.currentUserValue.username;
+      this.user.role = this.authService.currentUserValue.role;
+      
 
       // // still throws an error...
       //   // for now, we can either just feed the backend the USER ID, instead of a full object
@@ -66,7 +67,11 @@ export class CheckoutComponent implements OnInit {
     
   }
 
-  checkout(){
+  async checkout(){
+
+    let user = await this.userService.getTargetUser(this.user.id).then(resp =>{ return resp;});
+      console.log(user);
+
     let orderString = JSON.stringify(this.order);
     console.log("Order Data: "+orderString);
 
