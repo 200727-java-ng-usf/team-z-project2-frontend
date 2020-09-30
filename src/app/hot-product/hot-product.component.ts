@@ -12,6 +12,7 @@ declare let $:any;
 })
 export class HotProductComponent implements OnInit {
 
+  isAddItem:boolean;
   items = new Array;
   targetItem = new Item;
   rowData: any;
@@ -22,6 +23,8 @@ export class HotProductComponent implements OnInit {
   ngOnInit() {
 
     var hotproduct = this.storage.get('hotproduct');
+    this.isAddItem = false;
+
     if(hotproduct!= null){
 
      this.hotProduct = hotproduct;
@@ -30,6 +33,8 @@ export class HotProductComponent implements OnInit {
     console.log(this.newItem.id);
     
   }
+
+  
 
   public keywords:string;
 
@@ -72,6 +77,8 @@ export class HotProductComponent implements OnInit {
   }
 
   doAdd(item:Item){
+
+     this.isAddItem = true;
      
       this.hotProduct.push(item)
 
@@ -85,14 +92,17 @@ deleteData(key){
   this.hotProduct.splice(key,1);   // delete 1 item from position key
 
   this.storage.set('hotproduct',this.hotProduct);    // set new todolist in localstorage
+  if(this.hotProduct == null){
+    this.isAddItem = false;
+  }
 
 }
 
 
 
-checkboxChange(){
+submitOrder(itemId:number){
 
-  this.storage.set('hotproduct',this.hotProduct);  // after list change save data
+  alert("your item id is"+itemId)
 
 
 }
