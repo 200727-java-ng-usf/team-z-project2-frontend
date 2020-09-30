@@ -40,7 +40,8 @@ import { HotProductComponent } from './hot-product/hot-product.component';
 import { ShopGalleryComponent } from './shop-gallery/shop-gallery.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {StorageService} from './services/storage.service'
+import {StorageService} from './services/storage.service';
+import { SearchComponent } from './search/search.component'
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import {StorageService} from './services/storage.service'
     OrdersComponent,
     OrderedItemsComponent,
     HotProductComponent,
-    ShopGalleryComponent
+    ShopGalleryComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
