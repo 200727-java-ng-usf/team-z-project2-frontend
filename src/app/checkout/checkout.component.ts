@@ -3,6 +3,7 @@ import { Order } from '../models/order';
 import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
 import { OrderService } from '../services/order.service';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class CheckoutComponent implements OnInit {
   order: Order = new Order;
   user: User = new User;
 
-  constructor(private authService: AuthService,private orderService: OrderService) {
+  constructor(private authService: AuthService,private orderService: OrderService, private userService: UserService) {
     console.log('Instantiating Checkout component...');
     //Casting the user data into an order object
       //we may need to move this depending on what the subscriptions/observables do
@@ -31,7 +32,7 @@ export class CheckoutComponent implements OnInit {
     this.user.id = this.authService.currentUserValue.id;
     this.user.username = this.authService.currentUserValue.username;
     this.user.role = this.authService.currentUserValue.role;
-    this.order.user = this.user;
+    // this.order.user = this.userService.getTargetUser(this.user.id);
 
     // still throws an error...
       // for now, we can either just feed the backend the USER ID, instead of a full object
