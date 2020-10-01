@@ -54,7 +54,7 @@ export class SearchComponent implements OnInit {
        
           console.log(this.keyword);
   
-          if(this.items[i].name==this.keyword){
+          if(this.items[i].name.toUpperCase()==this.keyword.toUpperCase()&&this.items[i].id==this.keyword){
             this.isItemExist = true;
             this.newItem=this.items[i];
           }

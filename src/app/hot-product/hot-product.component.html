@@ -1,43 +1,133 @@
-<!--main-bottom-->
-<div class="main-bottom">
-  <div class="sub-bottom-nav">
-    <h3>New Product</h3>
 
 
-    <ul>
-      <li *ngFor="let item of items let num = index">
-    <div class="single-sale">
-      <a href="javascript:void(0)">
-         <img src="assets/img/hat_5.jpg">    <!--Item URL Here-->
-        
-        <h3>{{item.name}}</h3>
-        <h5>Product ID: 0000{{item.id}}</h5>
-      </a>
-      <p><span class="orange">$&nbsp;</span><span class="orange">{{item.price}}</span>&nbsp;|&nbsp;<span class="send-free">Free Shipping</span></p>
-      <p class="gary-text"><span>$&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>Top sale!!</span></p>
-      <button (click)="doAdd(item)">Add to the Cart</button>
+
+<div class="hotProductDivider">
+  <h1>Hot Products!</h1>
+</div>
+
+
+<!-- HOT PRODUCT GALLERY List -->
+<div class="container-fluid hotProductGallery">
+  <!-- //title or something -->
+
+  <!-- grid -->
+  <div class="row">
+    <div class="col-sm-2" *ngFor="let item of items let num = index">
+      <!-- card -->
+      <mat-card class="hat-card-gallery">
+
+        <img mat-card-image src={{item.itemImageUrl}}>
+        <mat-card-content>
+          
+            <h5>{{item.name}}</h5>
+            {{item.description}}
+            <br>
+            <p><span class="orange">$&nbsp;</span><span class="orange">{{item.price}}</span><span class="send-free">Free Shipping</span></p>
+            <p class="gary-text"><span>$&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>Top sale!!</span></p>
+            <strong>${{item.price}}</strong>
+            <br>
+            <strong>Product ID: 0000{{item.id}}</strong>
+          
+        </mat-card-content>
+        <mat-card-actions>
+          <!-- <input type=hidden id={{item.id}} value="test btn works"/> -->
+          <button (click)="doAdd(item)" mat-raised-button color="primary">ADD</button>
+        </mat-card-actions>
+      </mat-card>
     </div>
-  </li>
-</ul>
-
+  <!-- grid -->
+  </div>
+</div>
+<!-- end Hot products -->
 
 <hr>
-<h1>Cart</h1>
-<ul>
-  <li *ngFor="let item of hotProduct let num = index">
-<div class="single-sale">
-  <a href="javascript:void(0)">
-     <img src="assets/img/hat_5.jpg">    <!--Item URL Here-->
-    
-    <h3>{{item.name}}</h3>
-    <h5>Product ID: 0000{{item.id}}</h5>
-  </a>
-  <p><span class="orange">$&nbsp;</span><span class="orange">{{item.price}}</span>&nbsp;|&nbsp;<span class="send-free">Free Shipping</span></p>
-  <p class="gary-text"><span>$&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>Top sale!!</span></p>
-  <button (click)="deleteData(key)">Delete</button>
+<div class="mainGalleryDivider">
+  <h1>Latest hats:</h1>
 </div>
-</li>
-</ul>
+
+<!-- MAIN GALLERY List -->
+<div class="container-fluid hotProductGallery">
+  <!-- //title or something -->
+
+  <!-- grid -->
+  <div class="row">
+    <div class="col-sm-2" *ngFor="let item of items let num = index">
+      <!-- card -->
+      <mat-card class="hat-card-gallery">
+
+        <img mat-card-image src={{item.itemImageUrl}}>
+        <mat-card-content>
+          
+            <h5>{{item.name}}</h5>
+            {{item.description}}
+            <br>
+            <strong>${{item.price}}</strong>
+            <br>
+            <strong>Product ID: 0000{{item.id}}</strong>
+          
+        </mat-card-content>
+        <mat-card-actions>
+          <!-- <input type=hidden id={{item.id}} value="test btn works"/> -->
+          <button (click)="doAdd(item)" mat-raised-button color="primary">ADD</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  <!-- grid -->
+  </div>
+</div>
+<!-- end main gallery -->
+
+<hr>
+<div class="cartDivider">
+  <h1>Shopping Cart:</h1>
+</div>
+
+<!-- SHOPPING CART List -->
+<div class="container-fluid shoppingCart">
+  <!-- //title or something -->
+
+  <!-- grid -->
+  <div class="row">
+    <div class="col-sm-4" *ngFor="let item of hotProduct let num = index">
+      <!-- card -->
+      <mat-card class="hat-card-cart">
+
+        <img mat-card-image src={{item.itemImageUrl}}>
+        <mat-card-content>
+
+            <h5>{{item.name}}</h5>
+            {{item.description}}
+            <br>
+            <strong>${{item.price}}</strong>
+            <br>
+            <strong>Product ID: 0000{{item.id}}</strong>
+
+        </mat-card-content>
+        <mat-card-actions>
+          <!-- <input type=hidden id={{item.id}} value="test btn works"/> -->
+          <!-- <button (click)="submitOrder(item)" mat-raised-button color="primary">ADD</button> -->
+          <button (click)="deleteData(key)" mat-raised-button color="danger">Remove</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  
+  <!-- grid -->
+  </div>
+  <!-- CHECKOUT BUTTON -->
+  <br>
+  <div class="checkoutBtn">
+    <button (click)="submitOrder()" mat-raised-button color="primary">Ready to checkout?</button>
+    <!-- <button [routerLink]="userdash" mat-raised-button color="primary">Ready to checkout?</button> -->
+  </div>
+</div>
+<!-- wrapper -->
+
+
+
+<!-- MAIN HOT PRODUCTS GU's Code -->
+<!-- <div class="main-bottom">
+  <div class="sub-bottom-nav">
+    <h3>New Product</h3>
 
     </div>
   </div>
@@ -54,25 +144,24 @@
     <p class="gary-text"><span>$&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>Top sale!!</span></p>
     <button type="button" class="btn btn-success" (click)="doAdd(item)">Add to the Cart</button>
   </div>
-</div>
+</div> -->
+<!-- </div> -->
 
-</div>
+<!-- SHOPPING CART gu's code-->
 
-<hr>
-<h1 *ngIf="isAddItem">Shopping Cart</h1>
+<!-- <h1 *ngIf="isAddItem">Shopping Cart</h1>
 <ul>
-<li *ngFor="let item of hotProduct let num = index">
-<div class="single-sale">
-<a href="javascript:void(0)">
-   <img src={{item.itemImageUrl}}>    <!--Item URL Here-->
-  <h5>Order No. {{num+1}}</h5>
-  <h5>{{item.name}}</h5>
-  <h5>$&nbsp;{{item.price}}</h5>
-  <h5>Product ID: 0000{{item.id}}</h5>
-</a>
-<button type="button" class="btn btn-primary" (click)="submitOrder(item.id)">Submit Order</button>&nbsp;&nbsp;
-<button type="button" class="btn btn-danger"(click)="deleteData(key)">Delete</button>
-</div>
-</li>
-</ul>
-
+  <li *ngFor="let item of hotProduct let num = index">
+    <div class="single-sale">
+      <a href="javascript:void(0)">
+        <img src={{item.itemImageUrl}}>    
+        <h5>Order No. {{num+1}}</h5>
+        <h5>{{item.name}}</h5>
+        <h5>$&nbsp;{{item.price}}</h5>
+        <h5>Product ID: 0000{{item.id}}</h5>
+      </a>
+    <button type="button" class="btn btn-primary" (click)="submitOrder(item)">Submit Order</button>&nbsp;&nbsp;
+    <button type="button" class="btn btn-danger"(click)="deleteData(key)">Delete</button>
+    </div>
+  </li>
+</ul> -->

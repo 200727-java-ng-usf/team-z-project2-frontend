@@ -1,4 +1,43 @@
 img {
-    width: 250px;
-    height: 120px;
+    /* width: 250px;
+    height: 120px; */
+    object-fit: cover;
   }
+
+h5 {
+  white-space: nowrap;
+ }
+
+.cartDivider{
+width: 70%;
+text-align: center;
+margin: auto;
+background-color: indigo;
+color: white;
+}
+
+.shoppingCart{
+  width:70%;
+  margin:auto;
+}
+
+.mainGalleryDivider{
+  width: 70%;
+  text-align: center;
+  margin: auto;
+  background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
+  color: white;
+}
+.hotProductDivider{
+  width: 70%;
+  text-align: center;
+  margin: auto;
+  background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);
+  color: white;
+}
+
+.checkoutBtn{
+  text-align: center;
+  margin: auto;
+  padding-bottom: 10rem;;
+}
