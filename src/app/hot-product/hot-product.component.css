@@ -1,4 +1,43 @@
 img {
-    width: 250px;
-    height: 120px;
+    /* width: 250px;
+    height: 120px; */
+    object-fit: cover;
   }
+
+h5 {
+  white-space: nowrap;
+ }
+
+.cartDivider{
+width: 70%;
+text-align: center;
+margin: auto;
+background-color: indigo;
+color: white;
+}
+
+.shoppingCart{
+  width:70%;
+  margin:auto;
+}
+
+.mainGalleryDivider{
+  width: 70%;
+  text-align: center;
+  margin: auto;
+  background-color: rgb(24, 0, 130);
+  color: white;
+}
+.hotProductDivider{
+  width: 70%;
+  text-align: center;
+  margin: auto;
+  background-color: rgb(221, 80, 151);
+  color: white;
+}
+
+.checkoutBtn{
+  text-align: center;
+  margin: auto;
+  padding-bottom: 10rem;;
+}
