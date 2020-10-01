@@ -70,10 +70,13 @@ export class OrderService {
     console.log('Adding to cart...');
     
     this.authService.currentUserValue.itemCount += 1;
-    this.authService.currentUserValue.price += item.price;
+    console.log(this.authService.currentUserValue.price);
+    let priceNum = this.authService.currentUserValue.price + parseFloat(item.price);
+    this.authService.currentUserValue.price = priceNum; // Reassign total to include item just added
+    console.log('updated priceNum: ' + priceNum);
     console.log("Item added: id "+item.id);
     console.log("User: "+this.authService.currentUserValue.username);
-    console.log("Total: "+this.authService.currentUserValue.price);
+    console.log("Total: "+ priceNum);
     console.log("# items: "+this.authService.currentUserValue.itemCount);
 
     //NOTES: (Taking different approach for the sake of time...) -DR
