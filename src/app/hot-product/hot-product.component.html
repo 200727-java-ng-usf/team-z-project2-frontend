@@ -3,6 +3,7 @@
 
 <div class="hotProductDivider">
   <h1>Hot Products!</h1>
+  <br>
 </div>
 
 
@@ -14,7 +15,7 @@
   <div class="row">
     <div class="col-sm-2" *ngFor="let item of items let num = index">
       <!-- card -->
-      <mat-card class="hat-card-gallery">
+      <mat-card class="hat-card-gallery" *ngIf="num < 6">
 
         <img mat-card-image src={{item.itemImageUrl}}>
         <mat-card-content>
@@ -40,9 +41,29 @@
 </div>
 <!-- end Hot products -->
 
+
+<br>
+<br>
+  <div class="row">
+    <div class="col-sm">
+      <img mat-card-image src="https://200727-java-ng-usf-gu.s3.us-east-2.amazonaws.com/assets/IMG_8944_348b80dd-e9f5-4a68-83e9-fecf6ba42a39_1600x.jpg">
+    </div>
+    <div class="col-sm">
+      <img mat-card-image src="https://200727-java-ng-usf-gu.s3.us-east-2.amazonaws.com/assets/dahlia-kids-boater-light-grey-felt-hats_2295x.jpg">
+    </div>
+    <div class="col-sm">
+      <img mat-card-image src="https://200727-java-ng-usf-gu.s3.us-east-2.amazonaws.com/assets/m_5babc822aaa5b858c24f39b2.jpeg">
+    </div>
+  </div>
+
+  <br>
+  <br>
+
 <hr>
 <div class="mainGalleryDivider">
   <h1>Latest hats:</h1>
+  <br>
+  
 </div>
 
 <!-- MAIN GALLERY List -->
@@ -76,6 +97,8 @@
   </div>
 </div>
 <!-- end main gallery -->
+<br>
+<br>
 
 <hr>
 <div class="cartDivider">
