@@ -39,10 +39,10 @@ export class CheckoutComponent implements OnInit {
       this.order.user = this.storageService.get("userData");
 
       //debug testing
-      console.log("Order price: "+this.order.price);
-      console.log("Order item count: "+this.order.itemCount);
-      console.log("Order User ID: "+ this.order.user.id);
-      console.log("Order User email: "+this.order.user.email);
+      // console.log("Order price: "+this.order.price);
+      // console.log("Order item count: "+this.order.itemCount);
+      // console.log("Order User ID: "+ this.order.user.id);
+      // console.log("Order User email: "+this.order.user.email);
 
 
 
@@ -71,7 +71,7 @@ export class CheckoutComponent implements OnInit {
 
   async checkout(){
 
-    let user = await this.userService.getTargetUser(this.user.id).then(resp =>{ return resp;});
+    let user = await this.userService.getTargetUser(this.authService.currentUserValue.id).then(resp =>{ return resp;});
       console.log(user);
 
     let orderString = JSON.stringify(this.order);
