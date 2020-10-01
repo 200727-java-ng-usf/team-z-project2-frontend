@@ -1,3 +1,4 @@
+//MODULES
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AgGridModule } from 'ag-grid-angular'; //ag-grid API: if not installed, use npm install --save ag-grid-community ag-grid-angular
@@ -13,8 +14,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       //there could be file path issues depending on where the node_modules folder was placed
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
+//angular cards
+//ng add @angular/material
+// import { CardMaterialModule } from './material.module';
+// import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button'; 
+
+//COMPONENTS
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 // import { ModelsComponent } from './models/models.component';
@@ -30,6 +38,12 @@ import { ItemsComponent } from './items/items.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderedItemsComponent } from './ordered-items/ordered-items.component';
 import { HotProductComponent } from './hot-product/hot-product.component';
+import { ShopGalleryComponent } from './shop-gallery/shop-gallery.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { SearchComponent } from './search/search.component';
+
+import {StorageService} from './services/storage.service';
 
 @NgModule({
   declarations: [
@@ -47,18 +61,24 @@ import { HotProductComponent } from './hot-product/hot-product.component';
     ItemsComponent,
     OrdersComponent,
     OrderedItemsComponent,
-    HotProductComponent
+    HotProductComponent,
+    ShopGalleryComponent,
+    CheckoutComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
+    MatCardModule,
+    MatButtonModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
     HttpClientModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,7 +6,7 @@
 
 
     <ag-grid-angular
-    style="width: 1000px; height: 400px;"
+    style="width: auto; height: 500px;"
         class="ag-theme-alpine"
         [rowData]="rowData"
         [columnDefs]="columnDefs"
@@ -96,7 +96,14 @@
         </div>
         <div class="form-group">
             <label for="genreUpdate">Genre</label>
-            <input id="genreUpdate" type="text" class="form-control" formControlName="genreUpdate"/>
+            <select formControlName="genreUpdate" id="genreUpdate">
+                <option>BASEBALL</option>
+                <option>COWBOY</option>
+                <option>BEANIE</option>
+                <option>VISOR</option>
+                <option>SUN</option>
+            </select>
+            <!-- <input id="genreUpdate" type="text" class="form-control" formControlName="genreUpdate"/> -->
         </div>
 
         <div class="form-group">
@@ -141,7 +148,13 @@
         </div>
         <div class="form-group">
             <label for="genreCreate">Genre</label>
-            <input id="genreCreate" type="text" class="form-control" formControlName="genreCreate"/>
+            <select formControlName="genreCreate" id="genreCreate">
+                <option>BASEBALL</option>
+                <option>COWBOY</option>
+                <option>BEANIE</option>
+                <option>VISOR</option>
+                <option>SUN</option>
+            </select>
         </div>
 
         <div class="form-group">

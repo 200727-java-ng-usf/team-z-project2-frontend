@@ -49,7 +49,7 @@ export class NavComponent implements OnDestroy {
 
   
 
-  //new; may change later
+  //debug links
   defaultLinks = [
     {
       linkName: 'Login',
@@ -80,6 +80,7 @@ export class NavComponent implements OnDestroy {
       fragment: '/404' //because this is not an actual link, it should still resolve to 404 page
     }
   ];
+  //^debug links
 
   userRoleLinks = [
     {
@@ -87,15 +88,49 @@ export class NavComponent implements OnDestroy {
       fragment: ''
     },
     {
-      linkName: 'User Dashboard', //for testing atm
+      linkName: 'Dashboard', //for testing atm
       fragment: '/userdashboard'
+    }
+  ];
+  adminRoleLinks = [
+    {
+      linkName: 'Home', //back to storefront
+      fragment: ''
     },
     {
-      linkName: 'Cart',
-      fragment: '/cart' //shopping cart, until something better comes up
+      linkName: 'Admin Dashboard', 
+      fragment: '/admindashboard'
+    },
+    {
+      linkName: 'Manager Dashboard', 
+      fragment: '/managerdashboard'
+    }
+  ];
+  managerRoleLinks = [
+    {
+      linkName: 'Home', //back to storefront
+      fragment: ''
+    },
+    {
+      linkName: 'Manager Dashboard', 
+      fragment: '/managerdashboard'
     }
   ];
 
+  visitorLinks = [
+    {
+      linkName: 'Home', //back to storefront
+      fragment: ''
+    },
+    {
+      linkName: 'Login',
+      fragment: '/login'
+    },
+    {
+      linkName: 'Register',
+      fragment: '/register'
+    }
+  ];
 
   ngOnDestroy() {
     // remember to unsubscribe from observables to prevent memory leaks

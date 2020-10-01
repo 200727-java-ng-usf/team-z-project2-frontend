@@ -1,0 +1,35 @@
+
+<!-- div container -->
+<!-- ngfor -->
+<!-- div bootstrap columns collapsing -->
+<!-- mat card -->
+
+<!-- wrapper -->
+<div class="container-fluid">
+  <!-- //title or something -->
+
+  <!-- grid -->
+  <div class="row">
+  <div class="col-sm-4" *ngFor="let item of items">
+    <!-- card -->
+    <mat-card class="hat-card">
+
+      <img mat-card-image src={{item.itemImageUrl}}>
+      <mat-card-content>
+        <p>
+          {{item.description}}
+          <br>
+          <strong>${{item.price}}</strong>
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <!-- <input type=hidden id={{item.id}} value="test btn works"/> -->
+        <button (click)="addItemToCart(item)" mat-raised-button color="primary">ADD</button>
+      </mat-card-actions>
+    </mat-card>
+
+  </div>
+  <!-- grid -->
+  </div>
+</div>
+<!-- wrapper -->
