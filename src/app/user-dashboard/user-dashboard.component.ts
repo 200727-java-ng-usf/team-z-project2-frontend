@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { Principal } from '../models/principal';
 import { AuthService } from '../services/auth.service';
 import { OrderService } from '../services/order.service';
+import { Order } from '../models/order';
 
 @Component({
   selector: 'app-user-dashboard',
