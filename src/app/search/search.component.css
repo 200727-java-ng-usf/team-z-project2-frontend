@@ -1,5 +1,11 @@
-.search{
-  text-align: center;
+img{
+  width:30%;
+}
+  .search{
+    
+    width: 400px;
+    margin: 20px auto;
+
 }
 input{
     margin-bottom: 20px;
@@ -9,6 +15,3 @@ input{
 
 }
 
-img{
-  width:30%;
-}

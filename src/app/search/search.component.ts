@@ -80,7 +80,7 @@ export class SearchComponent implements OnInit {
       this.isItemExist=false;
     
       this.historyList.splice(key,1);   // delete 1 item from position key
-  
+      this.isItemExist=false;
       this.storage.set('searchList',this.historyList);
     }
 
