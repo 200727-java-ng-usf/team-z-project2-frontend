@@ -19,8 +19,12 @@ import { AppRoutingModule } from './app-routing.module';
 //ng add @angular/material
 // import { CardMaterialModule } from './material.module';
 // import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+
+
+
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button'; 
+
 
 //COMPONENTS
 import { AppComponent } from './app.component';
@@ -38,12 +42,16 @@ import { ItemsComponent } from './items/items.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderedItemsComponent } from './ordered-items/ordered-items.component';
 import { HotProductComponent } from './hot-product/hot-product.component';
+
+import {StorageService} from './services/storage.service';
+
 import { ShopGalleryComponent } from './shop-gallery/shop-gallery.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SearchComponent } from './search/search.component';
 
-import {StorageService} from './services/storage.service';
+
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -64,12 +72,17 @@ import {StorageService} from './services/storage.service';
     HotProductComponent,
     ShopGalleryComponent,
     CheckoutComponent,
-    SearchComponent
+    SearchComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
+
+
+
     MatCardModule,
     MatButtonModule,
+
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
