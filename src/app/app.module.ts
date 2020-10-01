@@ -44,6 +44,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { SearchComponent } from './search/search.component';
 
 import {StorageService} from './services/storage.service';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import {StorageService} from './services/storage.service';
     HotProductComponent,
     ShopGalleryComponent,
     CheckoutComponent,
-    SearchComponent
+    SearchComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

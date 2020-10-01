@@ -1,19 +1,14 @@
-img {
-    width: 150px;
-    height: 60px;
-  }
-
-  .search{
-    
-    width: 400px;
-    margin: 20px auto;
-
+.search{
+  text-align: center;
 }
-
 input{
     margin-bottom: 20px;
     width: 300px;
     height: 32px;
 
 
+}
+
+img{
+  width:30%;
 }
