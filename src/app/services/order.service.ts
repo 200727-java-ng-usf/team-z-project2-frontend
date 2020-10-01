@@ -26,6 +26,12 @@ export class OrderService {
     return this.http.get(`${env.API_URL}/orders`,{responseType:'json',observe:"response"});
   }
 
+  getAllOrdersByUser() {
+    let userId = this.authService.currentUserValue.id;
+    return this.http.get(`${env.API_URL}/orders/userId/` + userId,{responseType:'json',observe:"response"});
+  }
+
+
   getTargetOrder(id){ //test: working
     console.log("Fetching from backend...")
     let url = `${env.API_URL}/orders/id/` + id;
