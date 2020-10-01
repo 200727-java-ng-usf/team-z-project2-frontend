@@ -54,7 +54,7 @@ export class SearchComponent implements OnInit {
        
           console.log(this.keyword);
   
-          if(this.items[i].name.toUpperCase()==this.keyword.toUpperCase()&&this.items[i].id==this.keyword){
+          if(this.items[i].name.toUpperCase()==this.keyword.toUpperCase()){ //&&this.items[i].id==this.keyword
             this.isItemExist = true;
             this.newItem=this.items[i];
           }
@@ -76,7 +76,7 @@ export class SearchComponent implements OnInit {
     deleteHistory(key){
     
       this.historyList.splice(key,1);   // delete 1 item from position key
-  
+      this.isItemExist=false;
       this.storage.set('searchList',this.historyList);
     }
 

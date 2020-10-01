@@ -105,15 +105,17 @@ doAdd(item:Item){
   console.log(this.subtotal);
 }
 
-deleteData(key){
+deleteData(key, item){
 
   //can't figure this part out 
   //new:
-  // let deletedItem = this.hotProduct[key];
-  // this.subtotal -= parseFloat(key.price); //update subtotal
-  // this.itemCount--;                               //decrease item count
-  // this.storage.set('itemCount', this.itemCount);  //update count to storage
-  // this.storage.set('subtotal', this.subtotal);    //and the subtotal
+  let deletedItem = item;
+  this.subtotal -= parseFloat(item.price); //update subtotal
+  this.itemCount--;                               //decrease item count
+  this.storage.set('itemCount', this.itemCount);  //update count to storage
+  this.storage.set('subtotal', this.subtotal);    //and the subtotal
+  console.log(this.storage.get('itemCount'));
+  console.log(this.storage.get('subtotal'));
 
   this.hotProduct.splice(key,1);   // delete 1 item from position key
 
