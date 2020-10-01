@@ -3,7 +3,8 @@ import { User } from "../models/user";
 export class Order {
 	user_id: number;
 	id: number;
-    user: User;
+	user: User;
+	timeCreated: Date;
     itemCount: number;
 	price: number; //unsure about camel case when interacting with backend
 	
@@ -33,6 +34,15 @@ export class Order {
 
 	public set $user(value: User) {
 		this.user = value;
+	}
+
+	//timeCreated=================
+	public get $timeCreated(): Date {
+		return this.timeCreated;
+	}
+
+	public set $timeCreated(value: Date) {
+		this.timeCreated = this.timeCreated;
 	}
 
     //itemCount=============

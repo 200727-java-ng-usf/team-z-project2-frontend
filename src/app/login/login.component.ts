@@ -78,7 +78,9 @@ export class LoginComponent implements OnInit {
                         }
                         //fetch FULL user data and store into session
                         // this.storageService.set("thisUser"
-
+                        this.storageService.set('itemCount', 0);
+                        this.storageService.set('subtotal', 0);
+                        this.storageService.set('hotproduct', null);
                       },
                       // if an error occurs, execute the function below
                       err => {
