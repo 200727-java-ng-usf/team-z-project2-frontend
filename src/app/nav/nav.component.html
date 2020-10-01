@@ -1,7 +1,7 @@
 
 <!-- this is the demo nav -->
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand">My App!</a>
+    <a class="navbar-brand" routerLink="/">HAT MALL</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" 
     data-target="#nav-links" aria-controls="nav-links" 
@@ -10,32 +10,49 @@
     </button>
 
     <div class="collapse navbar-collapse" id="nav-links">
+        <!-- visitor links -->
+        <div *ngIf="!loggedin">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li ngbDropdown class="nav-item dropdown">
-                <span ngbDropdownToggle class="nav-link dropdown-toggle" id="nav-dropdown">Options</span>
-                <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="nav-dropdown">
-                    
-                    <!-- this is where we can have role logic -->
-                    <!-- check the .ts file for demo defaults example -->
-                    <div *ngIf="!loggedin">
-                        <a class="dropdown-item" *ngFor="let link of defaultLinks" [routerLink]="link.fragment">
-                            {{ link.linkName }}
-                        </a>
-                    </div>
-                
-                    <div *ngIf="isUser">
-                        <a class="dropdown-item" *ngFor="let link of userRoleLinks" [routerLink]="link.fragment">
-                            {{ link.linkName }}
-                        </a>
-                        <a class="dropdown-item" (click)="logout()">Logout</a> 
-                    </div>
-
-                </div>
+            <li class="nav-item" *ngFor="let link of visitorLinks" >
+                <a href="#" class="nav-link" [routerLink]="link.fragment">
+                    {{ link.linkName }}
+                </a>
             </li>
         </ul>
+        </div>
+        <!-- user links -->
+        <div *ngIf="isUser">
+        <ul class="navbar-nav mr-auto" >
+            <li class="nav-item" *ngFor="let link of userRoleLinks">
+                <a href="#" class="nav-link"  [routerLink]="link.fragment">
+                    {{ link.linkName }}
+                </a>
+            </li>
+                <a href="#" class="nav-link" (click)="logout()">Logout</a> 
+        </ul>
+        </div>
+        <!-- admin links -->
+        <div *ngIf="isAdmin">
+        <ul class="navbar-nav mr-auto" >
+            <li class="nav-item" *ngFor="let link of adminRoleLinks">
+                <a href="#" class="nav-link"  [routerLink]="link.fragment">
+                    {{ link.linkName }}
+                </a>
+            </li>
+                <a href="#" class="nav-link" (click)="logout()">Logout</a> 
+        </ul>
+        </div>
+        <!-- manager links -->
+        <div *ngIf="isManager">
+        <ul class="navbar-nav mr-auto" >
+            <li class="nav-item" *ngFor="let link of managerRoleLinks">
+                <a href="#" class="nav-link"  [routerLink]="link.fragment">
+                    {{ link.linkName }}
+                </a>
+            </li>
+                <a href="#" class="nav-link" (click)="logout()">Logout</a> 
+        </ul>
+        </div>
     </div>
 
 </nav>
