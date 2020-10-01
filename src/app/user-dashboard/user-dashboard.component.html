@@ -7,3 +7,27 @@
 </div>
 
 <app-checkout></app-checkout>
+
+<div id="get-container-orders" class="formcontainer">
+    
+    <!-- <div *ngIf="showAllUsers"> -->
+        <!-- ag-grid table api -->
+        <ag-grid-angular
+        style="width: auto; height: 500px;"
+            class="ag-theme-alpine"
+            [rowData]="rowData"
+            [columnDefs]="columnDefs"
+            
+            >
+        </ag-grid-angular>
+        <!-- (gridReady)="onGridReady($event)" -->
+
+        <button class="btn btn-primary" (click)="showAllOrdersByUser()">Refresh Orders</button>
+        <!-- <p *ngFor="let user of users">
+            <strong>User:</strong>
+            {{ user.user_id }}
+            {{ user.username }}
+            {{ user.role }}
+        </p> -->
+    <!-- </div> -->
+</div>
