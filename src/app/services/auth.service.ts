@@ -3,13 +3,16 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Principal } from '../models/principal';
 import { map } from 'rxjs/operators';
-
+import { User } from '../models/user';
 import { environment as env } from '../../environments/environment';
+import {StorageService} from '../services/storage.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  user: User;
   //ROLES:
     //USER
     //MANAGER
@@ -18,11 +21,13 @@ export class AuthService {
 
   private currentUserSubject: BehaviorSubject<Principal>
   currentUser$: Observable<Principal>
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private storageService: StorageService) {
+
     console.log('Instantiating AuthService');
     this.currentUserSubject = new BehaviorSubject<Principal>(null);
     this.currentUser$ = this.currentUserSubject.asObservable();
     console.log('AuthService instantiation complete.');
+
   }
 
   get currentUserValue() {
@@ -36,22 +41,48 @@ export class AuthService {
     // let credentials = { username, password }; //original
     let credentials = { username, password, role };
     console.log(`sending credentials, ${credentials}, to ${env.API_URL}/auth`);
-    //here are the REST targets
     return this.http.post(`${env.API_URL}/auth`, credentials, {
       headers: {
         'Content-type': 'application/json'
       },
-      observe: 'response' // default is body (which refers to the body of the response)
-    }).pipe( //from here on, referred to as 'piperroni'
+      observe: 'response' 
+    }).pipe( 
       
       map(resp => {
-        let principal = resp.body as Principal; // another form of casting (using the 'as' keyword)
+        let principal = resp.body as Principal;
+        //SHOPPING LOGIC:
+          //we can add logic here to initialize shopping cart data in the currentuser object
+            //then handle it through an order object within the user
+              //for now, i've only updated fields in the principle
+        principal.price = 0;
+        principal.itemCount = 0;
         this.currentUserSubject.next(principal);
         console.log('Principle: '+principal);
         console.log('Current user: '+ this.currentUserSubject);
+
+        //also fetch userdata and put into session data (for checkout)
+        this.getUserData(principal.id);
       })
     );
 
+  }
+
+  getUserData(id){ //test: working
+    console.log("Fetching from backend...")
+    let url = `${env.API_URL}/users/id/` + id;
+    console.log("URL: "+ url);
+    this.http.get(url,{responseType:'json',observe:"response"}).subscribe( 
+      resp=>{ 
+          this.user = resp.body as User; //cast into user object
+          this.storageService.set("userData", this.user); //add to local storage
+          let debugtest = this.storageService.get("userData"); //testing
+          console.log("Session data, userData email: "+ debugtest.email); //testing
+      },
+      err=>{
+          console.log(err.status);
+      }
+    );
+    
   }
 
   logout():boolean{

@@ -1,7 +1,7 @@
 import { User } from "../models/user";
 
 export class Order {
-
+	user_id: number;
 	id: number;
     user: User;
     itemCount: number;

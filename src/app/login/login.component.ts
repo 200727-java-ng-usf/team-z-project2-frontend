@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Principal } from '../models/principal';
 import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
+import {StorageService} from '../services/storage.service'
 
 //self identification, loaders
 @Component({
@@ -22,13 +24,20 @@ export class LoginComponent implements OnInit {
   currentUser: Principal = null;
   currentUserSub: Subscription = null;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
-    console.log('LoginComponent instantiating...');
-    this.currentUserSub = this.authService.currentUser$.subscribe(user => {
-      this.currentUser = user; //getting the user, to check its role for routing post-login
-    });
+  constructor(
+    private formBuilder: FormBuilder, 
+    private authService: AuthService, 
+    private router: Router,
+    private userService: UserService,
+    private storageService: StorageService
+    ) {
 
-    console.log('LoginComponent instantiation complete.');
+      console.log('LoginComponent instantiating...');
+      this.currentUserSub = this.authService.currentUser$.subscribe(user => {
+        this.currentUser = user; //getting the user, to check its role for routing post-login
+      });
+
+      console.log('LoginComponent instantiation complete.');
   }
 
   ngOnInit(): void {
@@ -67,7 +76,8 @@ export class LoginComponent implements OnInit {
                         } else {
                           this.router.navigate(['/404']);
                         }
-
+                        //fetch FULL user data and store into session
+                        // this.storageService.set("thisUser"
 
                       },
                       // if an error occurs, execute the function below
