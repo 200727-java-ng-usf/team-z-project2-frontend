@@ -27,6 +27,9 @@ import { User } from '../models/user';
 export class UserService {
   // userArray; //init array
 
+  private user: BehaviorSubject<User>;
+  user$: Observable<User>;
+
   constructor(private http: HttpClient) {
     console.log('Instantiating UserService');
   }
@@ -42,9 +45,17 @@ export class UserService {
   getTargetUser(id){ //test: working
     console.log("Fetching from backend...")
     let url = `${env.API_URL}/users/id/` + id;
+    
     console.log("URL: "+ url);
-    return this.http.get(url,{responseType:'json',observe:"response"});
-  }
+    return this.http.get(url,{responseType:'json',observe:"response"})
+                      .pipe(
+                        map(resp => {
+                          return resp.body as User;
+                          // console.log('response body: ' + resp.body);
+                        })
+                        
+                      ).toPromise();
+  } // comment
 
   registerNewUser(user:User){ //test: working
     console.log('Registering new user... ');
