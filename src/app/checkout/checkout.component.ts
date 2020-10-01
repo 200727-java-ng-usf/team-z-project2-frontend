@@ -85,6 +85,9 @@ export class CheckoutComponent implements OnInit {
       }
     );
 
+      this.authService.currentUserValue.price = 0;
+      this.authService.currentUserValue.itemCount = 0;
+
   }
 
 
