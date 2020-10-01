@@ -1,0 +1,19 @@
+
+
+test
+<div class="container-fluid">
+  <mat-card class="order-card">
+    TEST
+    <mat-card-content>
+      <p>
+        User ID: {{order.user_id}}
+        Items: {{order.itemCount}}
+        Subtotal: {{order.price}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <!-- <input type=hidden id={{item.id}} value="test btn works"/> -->
+      <button (click)="checkout()" mat-button >Checkout</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

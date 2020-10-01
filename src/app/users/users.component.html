@@ -96,7 +96,12 @@
         </div>
         <div class="form-group">
             <label for="roleUpdate">Role</label>
-            <input id="roleUpdate" type="text" class="form-control" formControlName="roleUpdate"/>
+            <select formControlName="roleUpdate" id="roleUpdate">
+                <option>USER</option>
+                <option>MANAGER</option>
+                <option>ADMIN</option>
+                <option>INACTIVE</option>
+            </select>
         </div>
 
         <div class="form-group">
