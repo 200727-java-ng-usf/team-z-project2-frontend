@@ -1,14 +1,14 @@
 
 
-test
+<!-- test -->
 <div class="container-fluid">
   <mat-card class="order-card">
-    TEST
+    <!-- TEST -->
     <mat-card-content>
       <p>
-        User ID: {{order.user_id}}
+        <!-- User ID: {{order.user_id}} -->
         Items: {{order.itemCount}}
-        Subtotal: {{order.price}}
+        Subtotal: {{order.price.toFixed(2)}}
       </p>
     </mat-card-content>
     <mat-card-actions>
