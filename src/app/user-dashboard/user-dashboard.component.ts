@@ -4,6 +4,7 @@ import { Principal } from '../models/principal';
 import { AuthService } from '../services/auth.service';
 import { OrderService } from '../services/order.service';
 import { Order } from '../models/order';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -30,7 +31,7 @@ export class UserDashboardComponent implements OnInit {
 
   columnDefs = [
     { field: 'id', sortable: true, filter: true, resizable: true  },
-    { field: 'timeCreated', sortable: true, filter: true, resizable: true },
+    // { field: 'timeCreated', sortable: true, filter: true, resizable: true },
     { field: 'itemCount', sortable: true, filter: true, resizable: true  },
     { field: 'price', sortable: true, filter: true, resizable: true  }
     
@@ -63,12 +64,16 @@ export class UserDashboardComponent implements OnInit {
           console.log('Response:'+resp.status);
           if(resp.status == 200){ //FIX THIS depending on returned code
             this.rowData = respJSON; //this assigns the json to the ag-grid table
-
             //this is currently unneeded, but we might can use the array later
+            // let new_date: Date = new Date();
             for( let i = 0; i < length ; i++){
               let newOrder = new Order();
               newOrder.$id = respJSON[i].id; //FIX THIS depending on what backend sends back
-              newOrder.$timeCreated = respJSON[i].timeCreated.toLocaleString();
+              // var date = new Date (this.datepipe.transform(respJSON[i].timeCreated, 'yyyy-MM-dd'));
+              // console.log(date.toDateString);
+              // newOrder.$timeCreated = respJSON[i].timeCreated;
+              newOrder.$timeCreated = respJSON[i].timeCreated;
+              console.log(newOrder.$timeCreated);
               newOrder.$itemCount = respJSON[i].itemCount;
               newOrder.$price = respJSON[i].price.toFixed(2);
               this.orders.unshift(newOrder); //adding order to array
